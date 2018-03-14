@@ -20,7 +20,7 @@ a,button{outline: none!important;} /* Prevent ugly blue glow on chrome and safar
 
 
 /* Globals type styling */
- h1, h2, h3, h4, h5, h6, p, label, .btn, a{
+ h1, h2, h3, h4, h5, h6, label, .btn {
 	font-family:Montserrat;
 }
 
@@ -514,8 +514,8 @@ a[data-lightbox]:hover img{
 /* Icon colour styles */
 
 .icon-carmine-pink{
-	color:#c4d733!important;
-	border-color:#c4d733!important;
+	color:#000;
+	border-color:#000;
 }
 .icon-outer-space{
 	color:#47454B!important;
