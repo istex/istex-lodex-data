@@ -249,3 +249,55 @@ button:hover>div>svg, button:hover>svg {
 		width: 100%!important;
 	}
 } 
+
+/*FOOTER
+	========*/
+	body > footer{
+		background-color: rgba(69, 140, 165,0.1);
+		margin-top:auto;
+		text-align:center;
+		padding-top:20px;
+		flex-shrink:0;
+	}
+	body > footer > ul{
+		padding:0;
+		display: -webkit-box;
+		display: -ms-flexbox;
+		display: flex;
+		list-style-type: none;
+		-webkit-box-pack: center;
+		    -ms-flex-pack: center;
+		        justify-content: center;
+		-ms-flex-wrap:wrap;
+		    flex-wrap:wrap;
+		-webkit-box-align:center;
+		    -ms-flex-align:center;
+		        align-items:center;
+	}
+	body > footer a{
+		padding:0 .5em;
+	}
+	.menu-pied li+li:before{
+		content:"|"
+	}
+	#menu-partenaires li{
+		padding:0 20px 20px 20px;
+	}
+/*plugin timeline - historique*/
+	.timeline-main-title{
+			text-align:center;
+	}
+	.cool-timeline.white-timeline .timeline-post.even .timeline-meta .meta-details,.cool-timeline.white-timeline .timeline-post.odd .timeline-meta .meta-details,.content-details{
+		color:#fff !important;
+	}
+	.cool-timeline .light-grey-post .timeline-content, .cool-timeline .timeline-post .timeline-content{
+		background-color:transparent !important;
+	}
+	.content-details{
+		border:1px solid grey;
+		border-top:0;
+		border-radius:0 0 5px 5px;
+	}
+	.exergue{
+		color:red;
+	}
