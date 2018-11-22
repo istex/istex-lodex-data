@@ -5,6 +5,18 @@ body {
 	color: #303030;
 	background: url(../img/BG_ISTEX_LIGHT_DESKTOP.jpg) center repeat;
 }
+nav.nav-bar-container {
+	background-color:#242b32;;
+}
+.nav-item {
+	color :#fff !important; 
+}
+.nav-item:hover {
+	color : #458ca5 !important; 
+}
+img.nav-bar-icon {
+	display:none;
+}
 #pageHead {
 	display: flex;
 	flex-direction: column;
