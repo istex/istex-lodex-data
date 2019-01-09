@@ -9,7 +9,7 @@ nav.nav-bar-container {
 	background-color:#242b32;;
 }
 .nav-item {
-	color :#fff !important; 
+	color :#c4d733 !important; 
 }
 .nav-item:hover {
 	color : #458ca5 !important; 
@@ -71,7 +71,7 @@ img.nav-bar-icon {
 	margin-left: 10px;
 }
 .property_value_container button {
-	background-color: #000!important;
+	background-color: #242b32!important;
 	color: ##c4d733!important;
 }
 .property_value_container button:hover {
@@ -81,9 +81,8 @@ img.nav-bar-icon {
 .property_label_container button {
 	background-color: transparent!important;
 }
-.property_value_container  button>div>div>span {
+.property_value_container>div>div>div>div>div>button>div>div>span {
 	color: #c4d733!important;
-	font-weight: 700!important;
 }
 .property_value_container  button:hover>div>div>span {
 	color: #fff!important;
@@ -149,7 +148,7 @@ img.nav-bar-icon {
 ._1gevi64>div {
 	height: 100%;
 }
-._1gevi64 div a {
+.lodex-resource-contentLink > div {
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
@@ -168,16 +167,15 @@ img.nav-bar-icon {
 	padding: 5px 5px 0 5px;
 	font-size: 10px;
 	color: #000!important;
-	height: 78px;
 	max-height: 85px;
 	overflow: hidden;
 }
 ._3hmsj  {
-	border-top: 1px solid #303030;
+	border-top: 1px solid #242b32;
 	height: 50px!important;
 	line-height: 50px!important;
 	color: #c4d733!important;
-	background-color: #000;
+	background-color: #242b32;
 	position: relative;
 	flex: 0 0 auto !important;
 }
@@ -203,6 +201,28 @@ img.nav-bar-icon {
 	background-repeat: no-repeat;
 	background-position: 35px center;
 }
+.fetch-fold-buttonLabel {
+	width: 200px;
+	justify-content: space-between;
+}
+.istex-fold div button {
+	margin-bottom: 5px!important;		
+}
+.resources-grid-item {
+	padding: 0!important;
+}
+.fetch-fold-labelText {
+	color: #c4d733!important;
+}
+.fetch-fold-count, .property_value_container  button:hover .fetch-fold-count {
+	color: #000!important
+}
+.load-more button div {
+	color: #c4d733;
+}
+.load-more button:hover div {
+	color: #fff;
+}
 .btn-admin {
 	font-weight: 700;
 }
@@ -219,6 +239,9 @@ img.nav-bar-icon {
 }
 button[tabindex] svg {
 	fill: #c4d733!important;
+}
+button[tabindex]:hover svg {
+	fill: #fff!important;
 }
 button:hover>div>svg, button:hover>svg {
 	fill: #fff!important;
