@@ -172,7 +172,7 @@ img.nav-bar-icon {
 	max-height: 85px;
 	overflow: hidden;
 }
-._3hmsj  {
+div._3hmsj  {
 	border-top: 1px solid #242b32;
 	height: 50px!important;
 	line-height: 50px!important;
@@ -184,17 +184,17 @@ img.nav-bar-icon {
     bottom: 0;
     width: 100%;
 }
-._3hmsj:hover {
+div._3hmsj:hover {
 	color: #fff!important;
 	background-color: #458ca5;
 }
-._3hmsj:hover:before {
+div._3hmsj:hover:before {
 	background-image: url(../img/ic_savoir_plus_white.svg);
 	background-size: 30px 30px;
 	background-repeat: no-repeat;
 	background-position: 35px center;
 }
-._3hmsj:before {
+div._3hmsj:before {
 	display: block;
 	padding-left: 35px;
 	width: 100%;
