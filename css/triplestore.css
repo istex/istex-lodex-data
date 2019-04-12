@@ -1,0 +1,25 @@
+#buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.btn, .btn:focus {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    color: #c4d733;
+    background-color: #242b32;
+    transition: color 0.3s;
+}
+
+.btn:hover, .btn:focus:hover {
+    color: #458ca5;
+}
+
+#examples.hideExamples {
+    display: none;
+}
+
+#examples.showExamples {
+    display: block;
+}

@@ -25,4 +25,33 @@ LIMIT 100`;
   YASGUI.defaults.catalogueEndpoints = options.catalogueEndpoints;
   YASGUI.defaults.yasqe.sparql.endpoint = "https://data.istex.fr/sparql/";
   var yasgui = YASGUI(document.getElementById("YASGUI"), options);
+
+  //chargement des exemples depuis le fichier json
+  var examplesDiv = document.getElementById("examples"); 
+  var xmlhttp = new XMLHttpRequest();
+  xmlhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      var exemplesJson = JSON.parse(this.responseText);
+      examplesDiv.innerHTML = myObj.name;
+    }
+  }
+  xmlhttp.open("GET", "/triplestore/sparql/examples.json", true);
+  xmlhttp.send();
+
+  console.log("chargé");
+  console.log(examplesDiv);
+
+  //affichage des exemples lors du click sur le bouton voir des exemples
+  document.getElementById("showExamples").addEventListener('click', function(){ 
+    if(examplesDiv.classList.contains("showExamples")){
+      examplesDiv.classList.remove('showExamples');
+      examplesDiv.classList.add('hideExamples');
+    }else{
+      examplesDiv.classList.remove('hideExamples');
+      examplesDiv.classList.add('showExamples');
+    }
+
+    //yasgui.addTab();
+  });
+  
 }, 1000);
