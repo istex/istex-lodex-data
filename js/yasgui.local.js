@@ -1,9 +1,9 @@
 setTimeout(function(){
   YASGUI.YASQE.defaults.value = `SELECT *
-WHERE {
-  ?subject ?verb ?complement .
-}
-LIMIT 100`;
+  WHERE {
+    ?subject ?verb ?complement .
+  }
+  LIMIT 100`;
   var options = {
     catalogueEndpoints: [
       { endpoint: "https://data.istex.fr/sparql/", title: "ISTEX" },
@@ -25,25 +25,25 @@ LIMIT 100`;
   YASGUI.defaults.catalogueEndpoints = options.catalogueEndpoints;
   YASGUI.defaults.yasqe.sparql.endpoint = "https://data.istex.fr/sparql/";
   var yasgui = YASGUI(document.getElementById("YASGUI"), options);
-
+  
   //chargement des exemples depuis le fichier json
   var examplesDiv = document.getElementById("examples"); 
-  var xmlhttp = new XMLHttpRequest();
-  xmlhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-      var examplesJson = JSON.parse(this.responseText);
-      examplesJson.forEach((elem) => {
+  fetch("/triplestore/sparql/examples.json").then(function(response){
+    response.json().then(function(jsonData){
+      jsonData.forEach((jsonElement) => {
         //creation du html correspondant
         var li = document.createElement("li");
         li.classList.add("itemExample");
-        li.appendChild(document.createTextNode(elem.title));
+        li.appendChild(document.createTextNode(jsonElement.title));
         examplesDiv.appendChild(li);
       });
-    }
-  }
-  xmlhttp.open("GET", "/triplestore/sparql/examples.json", true);
-  xmlhttp.send();
-
+    });
+    /*
+    examplesJson.forEach((elem) => {
+      
+    });*/
+  });
+  
   //affichage des exemples lors du click sur le bouton "voir des exemples"
   document.getElementById("showExamples").addEventListener('click', function(){ 
     if(examplesDiv.classList.contains("showExamples")){
