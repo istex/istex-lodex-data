@@ -31,17 +31,20 @@ LIMIT 100`;
   var xmlhttp = new XMLHttpRequest();
   xmlhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
-      var exemplesJson = JSON.parse(this.responseText);
-      examplesDiv.innerHTML = myObj.name;
+      var examplesJson = JSON.parse(this.responseText);
+      examplesJson.forEach((elem) => {
+        //creation du html correspondant
+        var li = document.createElement("li");
+        li.classList.add("itemExample");
+        li.appendChild(document.createTextNode(elem.title));
+        examplesDiv.appendChild(li);
+      });
     }
   }
   xmlhttp.open("GET", "/triplestore/sparql/examples.json", true);
   xmlhttp.send();
 
-  console.log("chargé");
-  console.log(examplesDiv);
-
-  //affichage des exemples lors du click sur le bouton voir des exemples
+  //affichage des exemples lors du click sur le bouton "voir des exemples"
   document.getElementById("showExamples").addEventListener('click', function(){ 
     if(examplesDiv.classList.contains("showExamples")){
       examplesDiv.classList.remove('showExamples');
@@ -50,8 +53,6 @@ LIMIT 100`;
       examplesDiv.classList.remove('hideExamples');
       examplesDiv.classList.add('showExamples');
     }
-
-    //yasgui.addTab();
   });
   
 }, 1000);

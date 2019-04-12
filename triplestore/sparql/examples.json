@@ -1,13 +1,14 @@
 [
     {
-        "id" : "example_compter",
         "title" : "Récupérer le nombre de triplets",
         "content" : "SELECT COUNT(*) WHERE { ?subject ?verb ?complement .}"
     },
     {
-        "id" : "example_compter_graphe",
         "title" : "Récupérer le nombre de triplets par graphe",
         "content" : "SELECT ?g COUNT(*) AS ?nb WHERE { GRAPH ?g { ?subject ?verb ?complement . } } GROUP BY ?g ORDER BY DESC(?nb)"  
+    },
+    {
+        "title" : "Récupérer les triplets d'un graphe donné",
+        "content" : "SELECT * FROM <https://enrichment-process.data.istex.fr/notice/graph> WHERE { ?subject ?verb ?complement . } LIMIT 100"
     }
-
 ]
