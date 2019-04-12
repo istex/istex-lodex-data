@@ -35,13 +35,17 @@ setTimeout(function(){
         var li = document.createElement("li");
         li.classList.add("itemExample");
         li.appendChild(document.createTextNode(jsonElement.title));
+        
+        //evenement de click sur chaque exemple
+        li.addEventListener('click', function(){
+          var newTab = yasgui.addTab();
+          newTab.yasqe.setValue(jsonElement.content);
+        });
+        
+        //ajout des exemples dans le DOM
         examplesDiv.appendChild(li);
       });
     });
-    /*
-    examplesJson.forEach((elem) => {
-      
-    });*/
   });
   
   //affichage des exemples lors du click sur le bouton "voir des exemples"
