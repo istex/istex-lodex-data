@@ -13,9 +13,21 @@
       <button id="showExamples" class="btn">Voir des exemples</button>
     </div>
 
-    <ul id="examples" class="hideExamples">
-    </ul>
-
+    <div id="popupExamples" class="popupContainer hidePopup">
+      <div class="popup">
+        <div class="popupHeader">
+          Exemples de requêtes SPARQL
+        </div>
+        <div class="popupBody">
+          <ul id="examples">
+          </ul>
+        </div>
+        <div class="popupFooter">
+          <button class="btn closePopup">Annuler</button>
+        </div>
+      </div>
+    </div>
+    
     <div id="YASGUI"></div>
     <script src="/js/yasgui.local.js"></script>
   </body>

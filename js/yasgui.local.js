@@ -27,6 +27,7 @@ setTimeout(function(){
   var yasgui = YASGUI(document.getElementById("YASGUI"), options);
   
   //chargement des exemples depuis le fichier json
+  var examplesPopup = document.getElementById("popupExamples");
   var examplesDiv = document.getElementById("examples"); 
   fetch("/triplestore/sparql/examples.json").then(function(response){
     response.json().then(function(jsonData){
@@ -40,6 +41,7 @@ setTimeout(function(){
         li.addEventListener('click', function(){
           var newTab = yasgui.addTab();
           newTab.yasqe.setValue(jsonElement.content);
+          hidePopup(examplesPopup);
         });
         
         //ajout des exemples dans le DOM
@@ -47,16 +49,31 @@ setTimeout(function(){
       });
     });
   });
-  
+
+  //interraction avec la pop-up
+  document.querySelectorAll('.closePopup').forEach((e) => {
+    e.addEventListener('click', function(){
+      hidePopup(e.closest('.popupContainer'));
+    })
+  });
+
   //affichage des exemples lors du click sur le bouton "voir des exemples"
   document.getElementById("showExamples").addEventListener('click', function(){ 
-    if(examplesDiv.classList.contains("showExamples")){
-      examplesDiv.classList.remove('showExamples');
-      examplesDiv.classList.add('hideExamples');
+    if(examplesPopup.classList.contains("showPopup")){
+      hidePopup(examplesPopup);
     }else{
-      examplesDiv.classList.remove('hideExamples');
-      examplesDiv.classList.add('showExamples');
+      showPopup(examplesPopup);
     }
   });
   
 }, 1000);
+
+function showPopup(popup){
+  popup.classList.remove('hidePopup');
+  popup.classList.add('showPopup');
+}
+
+function hidePopup(popup){
+  popup.classList.remove('showPopup');
+  popup.classList.add('hidePopup');
+}

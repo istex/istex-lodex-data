@@ -16,10 +16,43 @@
     color: #458ca5;
 }
 
-#examples.hideExamples {
-    display: none;
+.popupContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0px; left: 110px; right: 0px; bottom: 0px;
+    background-color: #242b3299;
+    z-index: 9999;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.5s;
 }
 
-#examples.showExamples {
-    display: block;
+.showPopup {
+   visibility: visible;
+   opacity: 1;
+}
+
+.popup {
+    max-width: 900px;
+    border: 1px solid #242b32;
+    background-color: #fff;
+    color: #242b32;
+    border-radius: 7px;
+    transition: transform 0.5s;
+}
+
+.hidePopup .popup {
+    transform: translateY(-25vh);
+}
+
+.popupFooter {
+    border-top: 1px solid #242b32;
+    padding: 10px 10px;
+    text-align: right;
+}
+
+.closePopup {
+    margin: 0;
 }
