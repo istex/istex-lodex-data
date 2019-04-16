@@ -10,6 +10,7 @@
     color: #c4d733;
     background-color: #242b32;
     transition: color 0.3s;
+    cursor: pointer;
 }
 
 .btn:hover, .btn:focus:hover {
@@ -26,7 +27,7 @@
     z-index: 9999;
     visibility: hidden;
     opacity: 0;
-    transition: opacity 0.5s;
+    transition: opacity 0.5s ease;
 }
 
 .showPopup {
@@ -34,25 +35,57 @@
    opacity: 1;
 }
 
+.hidePopup {
+    transition: opacity 0.5s ease, visibility 0s ease 0.5s;
+}
+
 .popup {
     max-width: 900px;
     border: 1px solid #242b32;
-    background-color: #fff;
+    background: url(/img/BG_ISTEX_LIGHT_DESKTOP.jpg) center repeat;
     color: #242b32;
     border-radius: 7px;
+    box-shadow: 0 5px 15px rgba(0,0,0,.5);
+    transform: translateY(-25vh);
     transition: transform 0.5s;
 }
 
-.hidePopup .popup {
-    transform: translateY(-25vh);
+.showPopup .popup {
+    transform: translateY(-10px);
+}
+
+.popupHeader {
+    border-bottom: 1px solid #CCC;
+    padding: 10px;
+}
+
+.popupTitle
+{
+    font-weight: bolder;
 }
 
 .popupFooter {
-    border-top: 1px solid #242b32;
-    padding: 10px 10px;
+    border-top: 1px solid #CCC;
+    padding: 10px;
     text-align: right;
 }
 
-.closePopup {
+.closePopup, .closePopup:focus {
     margin: 0;
+}
+
+#examples {
+    list-style-type: none;
+    margin: 0;
+    padding: 5px;
+}
+
+.exampleItem {
+    transition: background-color 0.3s;
+    padding: 2px;
+    cursor: pointer;
+}
+
+.exampleItem:hover {
+    background-color: rgba(0,0,0,.1);
 }

@@ -34,7 +34,8 @@ setTimeout(function(){
       jsonData.forEach((jsonElement) => {
         //creation du html correspondant
         var li = document.createElement("li");
-        li.classList.add("itemExample");
+        li.classList.add("exampleItem");
+        li.setAttribute('title', 'Cliquez pour voir cet exemple');
         li.appendChild(document.createTextNode(jsonElement.title));
         
         //evenement de click sur chaque exemple
