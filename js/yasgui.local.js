@@ -1,9 +1,9 @@
 setTimeout(function(){
   YASGUI.YASQE.defaults.value = `SELECT *
-  WHERE {
-    ?subject ?verb ?complement .
-  }
-  LIMIT 100`;
+WHERE {
+  ?subject ?verb ?complement .
+}
+LIMIT 100`;
   var options = {
     catalogueEndpoints: [
       { endpoint: "https://data.istex.fr/sparql/", title: "ISTEX" },
@@ -41,7 +41,7 @@ setTimeout(function(){
         //evenement de click sur chaque exemple
         li.addEventListener('click', function(){
           var newTab = yasgui.addTab();
-          newTab.yasqe.setValue(jsonElement.content);
+          newTab.setQuery(jsonElement.content);
           hidePopup(examplesPopup);
         });
         
