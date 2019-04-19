@@ -1,3 +1,22 @@
+var examplesData = `
+[
+  {
+      "title" : "Récupérer le nombre de triplets",
+      "content" : "SELECT (COUNT(*) as ?nb) \\nWHERE {\\n  ?subject ?verb ?complement . \\n}",
+      "description" : "Permet de connaître le nombre de triplets disponible sur le tripplestore."
+  },
+  {
+      "title" : "Récupérer le nombre de triplets par graphe",
+      "content" : "SELECT ?g (COUNT(*) AS ?nb)\\nWHERE { \\n  GRAPH ?g { ?subject ?verb ?complement . } \\n} \\nGROUP BY ?g \\nORDER BY DESC(?nb)",
+      "description" : "Retourne le nombre de triplets disponibles pour chaque graphe du triplestore."
+  },
+  {
+      "title" : "Récupérer les triplets d'un graphe donné",
+      "content" : "SELECT * \\nFROM <https://enrichment-process.data.istex.fr/notice/graph> \\nWHERE { \\n  ?subject ?verb ?complement . \\n} \\nLIMIT 100",
+      "description" : "Permet de récuprérer tous les triplets associer à un graphe donné."
+  }
+]`;
+
 setTimeout(function(){
   YASGUI.YASQE.defaults.value = `SELECT *
 WHERE {
@@ -29,8 +48,7 @@ LIMIT 100`;
   //chargement des exemples depuis le fichier json
   var examplesPopup = document.getElementById("popupExamples");
   var examplesDiv = document.getElementById("examples"); 
-  fetch("/triplestore/sparql/examples.json").then(function(response){
-    response.json().then(function(jsonData){
+      var jsonData = JSON.parse(examplesData);
       jsonData.forEach((jsonElement) => {
         //creation du html correspondant
         var li = document.createElement("li");
@@ -53,8 +71,7 @@ LIMIT 100`;
         //ajout des exemples dans le DOM
         examplesDiv.appendChild(li);
       });
-    });
-  });
+   
 
   //interraction avec la pop-up
   var executeBt = document.getElementById('executeExample');
