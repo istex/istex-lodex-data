@@ -1,14 +1,17 @@
 [
     {
         "title" : "Récupérer le nombre de triplets",
-        "content" : "SELECT COUNT(*) WHERE { ?subject ?verb ?complement .}"
+        "content" : "SELECT COUNT(*) WHERE { ?subject ?verb ?complement .}",
+        "description" : "Permet de connaître le nombre de triplets disponible sur le tripplestore."
     },
     {
         "title" : "Récupérer le nombre de triplets par graphe",
-        "content" : "SELECT ?g COUNT(*) AS ?nb WHERE { GRAPH ?g { ?subject ?verb ?complement . } } GROUP BY ?g ORDER BY DESC(?nb)"  
+        "content" : "SELECT ?g COUNT(*) AS ?nb WHERE { GRAPH ?g { ?subject ?verb ?complement . } } GROUP BY ?g ORDER BY DESC(?nb)",
+        "description" : "Retourne le nombre de triplets disponibles pour chaque graphe du triplestore."
     },
     {
         "title" : "Récupérer les triplets d'un graphe donné",
-        "content" : "SELECT * FROM <https://enrichment-process.data.istex.fr/notice/graph> WHERE { ?subject ?verb ?complement . } LIMIT 100"
+        "content" : "SELECT * FROM <https://enrichment-process.data.istex.fr/notice/graph> WHERE { ?subject ?verb ?complement . } LIMIT 100",
+        "description" : "Permet de récuprérer tous les triplets associer à un graphe donné."
     }
 ]

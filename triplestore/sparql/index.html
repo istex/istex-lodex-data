@@ -10,7 +10,7 @@
   </head>
   <body>
     <div id="buttons">
-      <button id="showExamples" class="btn">Voir des exemples</button>
+      <button id="showExamples" class="btn">Exécuter des exemples</button>
     </div>
 
     <div id="popupExamples" class="popupContainer">
@@ -19,11 +19,12 @@
           <h4 class="popupTitle">Exemples de requêtes SPARQL</h4>
         </div>
         <div class="popupBody">
-          <ul id="examples">
-          </ul>
+            <ul id="examples">
+            </ul>
         </div>
         <div class="popupFooter">
-          <button class="btn closePopup">Annuler</button>
+          <button id="executeExample" class="btn popupBtn" disabled>Executer</button>
+          <button id="closePopup" class="btn popupBtn">Annuler</button>
         </div>
       </div>
     </div>

@@ -35,14 +35,19 @@ LIMIT 100`;
         //creation du html correspondant
         var li = document.createElement("li");
         li.classList.add("exampleItem");
-        li.setAttribute('title', 'Cliquez pour voir cet exemple');
+        li.setAttribute('title', jsonElement.description);
+        
+        var radioBt = document.createElement('input');
+        radioBt.setAttribute("type", "radio");
+        radioBt.setAttribute("name", "exampleRadioButton");
+        radioBt.setAttribute("value", jsonElement.content);
+        li.appendChild(radioBt);
         li.appendChild(document.createTextNode(jsonElement.title));
         
         //evenement de click sur chaque exemple
         li.addEventListener('click', function(){
-          var newTab = yasgui.addTab();
-          newTab.setQuery(jsonElement.content);
-          hidePopup(examplesPopup);
+          li.childNodes[0].click();
+          document.getElementById('executeExample').removeAttribute("disabled");
         });
         
         //ajout des exemples dans le DOM
@@ -52,10 +57,19 @@ LIMIT 100`;
   });
 
   //interraction avec la pop-up
-  document.querySelectorAll('.closePopup').forEach((e) => {
-    e.addEventListener('click', function(){
-      hidePopup(e.closest('.popupContainer'));
-    })
+  var executeBt = document.getElementById('executeExample');
+  executeBt.addEventListener('click', function(){
+    var selected = getSelectedExample();
+    if(selected === null) return;
+    var newTab = yasgui.addTab();
+    newTab.setQuery(selected.value);
+    hidePopup(closeBt.closest('.popupContainer'));
+    newTab.yasqe.query();
+  });
+
+  var closeBt =  document.getElementById('closePopup');
+  closeBt.addEventListener('click', function(){
+      hidePopup(closeBt.closest('.popupContainer'));
   });
 
   //affichage des exemples lors du click sur le bouton "voir des exemples"
@@ -68,6 +82,17 @@ LIMIT 100`;
   });
   
 }, 1000);
+
+function getSelectedExample(){
+  var radios = document.getElementsByName("exampleRadioButton");
+  for(var i = 0; i < radios.length; i++){
+    if(radios[i].checked){
+      return radios[i];
+    }
+  }
+  
+  return null;
+}
 
 function showPopup(popup){
   popup.classList.remove('hidePopup');

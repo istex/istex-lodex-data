@@ -41,6 +41,7 @@
 
 .popup {
     max-width: 900px;
+    min-width: 500px;
     border: 1px solid #242b32;
     background: url(/img/BG_ISTEX_LIGHT_DESKTOP.jpg) center repeat;
     color: #242b32;
@@ -70,7 +71,7 @@
     text-align: right;
 }
 
-.closePopup, .closePopup:focus {
+.popupBtn, .popupBtn:focus {
     margin: 0;
 }
 
@@ -88,4 +89,9 @@
 
 .exampleItem:hover {
     background-color: rgba(0,0,0,.1);
+}
+
+.exampleItem input[type="radio"]{
+    margin-right: 4px;
+    vertical-align: top;
 }
