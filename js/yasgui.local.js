@@ -2,17 +2,36 @@ var examplesData = `
 [
   {
       "title" : "Récupérer le nombre de triplets",
-      "content" : "SELECT (COUNT(*) as ?nb) \\nWHERE {\\n  ?subject ?verb ?complement . \\n}",
+      "content" : [
+        "SELECT (COUNT(*) as ?nb)",
+        "WHERE {",
+        "  ?subject ?verb ?complement . ",
+        "}"
+      ],
       "description" : "Permet de connaître le nombre de triplets disponible sur le tripplestore."
   },
   {
       "title" : "Récupérer le nombre de triplets par graphe",
-      "content" : "SELECT ?g (COUNT(*) AS ?nb)\\nWHERE { \\n  GRAPH ?g { ?subject ?verb ?complement . } \\n} \\nGROUP BY ?g \\nORDER BY DESC(?nb)",
+      "content" : [
+        "SELECT ?g (COUNT(*) AS ?nb)",
+        "WHERE { ",
+        "  GRAPH ?g { ?subject ?verb ?complement . } ",
+        "} ",
+        "GROUP BY ?g ",
+        "ORDER BY DESC(?nb)"
+      ],
       "description" : "Retourne le nombre de triplets disponibles pour chaque graphe du triplestore."
   },
   {
       "title" : "Récupérer les triplets d'un graphe donné",
-      "content" : "SELECT * \\nFROM <https://enrichment-process.data.istex.fr/notice/graph> \\nWHERE { \\n  ?subject ?verb ?complement . \\n} \\nLIMIT 100",
+      "content" : [
+        "SELECT * ",
+        "FROM <https://enrichment-process.data.istex.fr/notice/graph> ",
+        "WHERE { ",
+        "  ?subject ?verb ?complement . ",
+        "} ",
+        "LIMIT 100"
+      ],
       "description" : "Permet de récuprérer tous les triplets associer à un graphe donné."
   }
 ]`;
@@ -50,17 +69,22 @@ LIMIT 100`;
   var examplesDiv = document.getElementById("examples"); 
       var jsonData = JSON.parse(examplesData);
       jsonData.forEach((jsonElement) => {
+        //recuperation et formattage des données
+        var title = jsonElement.title;
+        var content = jsonElement.content.join('\n');
+        var description = jsonElement.description;
+
         //creation du html correspondant
         var li = document.createElement("li");
         li.classList.add("exampleItem");
-        li.setAttribute('title', jsonElement.description);
+        li.setAttribute('title', description);
         
         var radioBt = document.createElement('input');
         radioBt.setAttribute("type", "radio");
         radioBt.setAttribute("name", "exampleRadioButton");
-        radioBt.setAttribute("value", jsonElement.content);
+        radioBt.setAttribute("value", content);
         li.appendChild(radioBt);
-        li.appendChild(document.createTextNode(jsonElement.title));
+        li.appendChild(document.createTextNode(title));
         
         //evenement de click sur chaque exemple
         li.addEventListener('click', function(){
