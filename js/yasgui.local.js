@@ -1,38 +1,92 @@
 var examplesData = `
 [
   {
-      "title" : "Récupérer le nombre de triplets",
-      "content" : [
-        "SELECT (COUNT(*) as ?nb)",
-        "WHERE {",
-        "  ?subject ?verb ?complement . ",
-        "}"
-      ],
-      "description" : "Permet de connaître le nombre de triplets disponible sur le tripplestore."
+    "title" : "Liste de dix triplets",
+    "content" : [
+      "SELECT * # Affiche toutes les variables",
+      "WHERE {",
+      "  # Un motif de triplet, ou chaque partie est une variable",
+      "  ?subject ?verb ?complement .",
+      "}",
+      "OFFSET 1000 # Démarre au millième triplet",
+      "LIMIT 10 # Ne prend que 10 triplets"
+    ],
+    "description" : "Liste dix triplets, à partir du numéro 1000."
   },
   {
-      "title" : "Récupérer le nombre de triplets par graphe",
-      "content" : [
-        "SELECT ?g (COUNT(*) AS ?nb)",
-        "WHERE { ",
-        "  GRAPH ?g { ?subject ?verb ?complement . } ",
-        "} ",
-        "GROUP BY ?g ",
-        "ORDER BY DESC(?nb)"
-      ],
-      "description" : "Retourne le nombre de triplets disponibles pour chaque graphe du triplestore."
+    "title" : "Nombre de triplets",
+    "content" : [
+      "SELECT (COUNT(*) as ?nb) # Compte les triplets trouvés",
+      "WHERE {",
+      "  # Pas de contrainte particulière",
+      "  ?subject ?verb ?complement",
+      "}"
+    ],
+    "description" : "Compte tous les triplets présents dans le triple store (y compris les triplets par défaut ajoutés par OpenLink Virtuoso)."
   },
   {
-      "title" : "Récupérer les triplets d'un graphe donné",
-      "content" : [
-        "SELECT * ",
-        "FROM <https://enrichment-process.data.istex.fr/notice/graph> ",
-        "WHERE { ",
-        "  ?subject ?verb ?complement . ",
-        "} ",
-        "LIMIT 100"
-      ],
-      "description" : "Permet de récuprérer tous les triplets associer à un graphe donné."
+    "title" : "Nombre de triplets par graphe nommé",
+    "content" : [
+      "# Affiche la variable ?g à côté du comptage des triplets correspondant",
+      "# Ce comptage est stocké dans la variable ?nb",
+      "SELECT ?g (COUNT(*) AS ?nb)",
+      "WHERE {",
+      "  # ?subject ?verb ?complement est le triplet appartenant au",
+      "  # graphe nommé ?g",
+      "  # Un graphe nommé est un sous-ensemble de triplets.",
+      "  GRAPH ?g { ?subject ?verb ?complement . }",
+      "}",
+      "GROUP BY ?g # Groupe les triplets par graphe nommé",
+      "ORDER BY DESC(?nb) # Trie les graphes par nombre de triplets"
+    ],
+    "description" : "Donne la répartition des triplets par graphe nommé. Un graphe nommé étant une sous-partie du graphe global contenant tous les triplets."
+  },
+  {
+    "title" : "Triplets d’un graphe nommé",
+    "content" : [
+      "# Affiche toutes les variables (dans ce cas, elles constituent un triplet)",
+      "SELECT *",
+      "FROM <https://enrichment-process.data.istex.fr/notice/graph> # Graphe dans lequel on cherche",
+      "WHERE {",
+      "  ?subject ?verb ?complement .",
+      "}",
+      "LIMIT 100 # Limite le nombre de réponses à 100"
+    ],
+    "description" : "Affiche les cent premiers triplets d’un graphe nommé particulier. Quand on ne sélectionne pas de graphe nommé, la requête cherche dans tous les graphes nommés du système (c’est-à-dire tous les triplets)."
+  },
+  {
+    "title" : "Triplets de deux graphes nommés",
+    "content" : [
+      "SELECT *",
+      "# On peut chercher dans plusieurs graphes nommés (et dans aucun autre),",
+      "# en utilisant l’instruction FROM plusieurs fois.",
+      "FROM <https://enrichment-process.data.istex.fr/notice/graph>",
+      "FROM <https://wos-category.data.istex.fr/notice/graph>",
+      "WHERE {",
+      "  ?subject ?verb ?complement .",
+      "}",
+      "LIMIT 100"
+    ],
+    "description" : "Affiche les cent premiers triplets de deux graphes nommés particuliers."
+  },
+  {
+    "title" : "Récupération du label du type d’un document (avec filtrage sur la langue)",
+    "content" : [
+      "# Déclaration d’un préfixe.",
+      "# Dans la suite de la requête, skos: sera remplacé par # http://www.w3.org/2004/02/skos/core#",
+      "PREFIX skos: <http://www.w3.org/2004/02/skos/core#>",
+      "SELECT *",
+      "WHERE {",
+      "  # Le document ark:/67375/996-HMN8BG45-4 a un type de publication (istex:publicationType)",
+      "  # qui est affecté à la variable ?pt.",
+      "  <https://api.istex.fr/ark:/67375/996-HMN8BG45-4> ",
+      "  <https://data.istex.fr/ontology/istex#publicationType> ?pt .",
+      "    ?pt skos:prefLabel ?label . # ?pt est le point commun entre les triplets.",
+      "  # skos:prefLabel est la propriété liant un type de publication à son libellé.",
+      "  FILTER(LANG(?label) = 'fr') # Ne garde que les cas où ?label est en français.",
+      "}"
+    ],
+    "description" : "Affiche des informations attachées à un document ISTEX particulier. En l’occurrence, son type de publication, exprimé en français."
   }
 ]`;
 
