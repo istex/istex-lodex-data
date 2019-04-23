@@ -160,6 +160,8 @@ setTimeout(function(){
     var endpoint = selected.endpoint;
     if(endpoint !== undefined) {
       newTab.setEndpoint(endpoint);
+    }else{
+      newTab.setEndpoint(YASGUI.defaults.yasqe.sparql.endpoint);
     }
     hidePopup(closeBt.closest('.popupContainer'));
     newTab.yasqe.query();
