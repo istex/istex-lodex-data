@@ -92,10 +92,10 @@ var examplesData = `
 
 setTimeout(function(){
   YASGUI.YASQE.defaults.value = `SELECT *
-WHERE {
-  ?subject ?verb ?complement .
-}
-LIMIT 100`;
+  WHERE {
+    ?subject ?verb ?complement .
+  }
+  LIMIT 100`;
   var options = {
     catalogueEndpoints: [
       { endpoint: "https://data.istex.fr/sparql/", title: "ISTEX" },
@@ -121,52 +121,55 @@ LIMIT 100`;
   //chargement des exemples depuis le fichier json
   var examplesPopup = document.getElementById("popupExamples");
   var examplesDiv = document.getElementById("examples"); 
-      var jsonData = JSON.parse(examplesData);
-      jsonData.forEach((jsonElement) => {
-        //recuperation et formattage des données
-        var title = jsonElement.title;
-        var content = jsonElement.content.join('\n');
-        var description = jsonElement.description;
-
-        //creation du html correspondant
-        var li = document.createElement("li");
-        li.classList.add("exampleItem");
-        li.setAttribute('title', description);
-        
-        var radioBt = document.createElement('input');
-        radioBt.setAttribute("type", "radio");
-        radioBt.setAttribute("name", "exampleRadioButton");
-        radioBt.setAttribute("value", content);
-        li.appendChild(radioBt);
-        li.appendChild(document.createTextNode(title));
-        
-        //evenement de click sur chaque exemple
-        li.addEventListener('click', function(){
-          li.childNodes[0].click();
-          document.getElementById('executeExample').removeAttribute("disabled");
-        });
-        
-        //ajout des exemples dans le DOM
-        examplesDiv.appendChild(li);
-      });
-   
-
+  var jsonData = JSON.parse(examplesData);
+  jsonData.forEach((jsonElement) => {
+    //recuperation et formattage des données
+    var title = jsonElement.title;
+    var description = jsonElement.description;
+    
+    //creation du html correspondant
+    var li = document.createElement("li");
+    li.classList.add("exampleItem");
+    li.setAttribute('title', description);
+    
+    var radioBt = document.createElement('input');
+    radioBt.setAttribute("type", "radio");
+    radioBt.setAttribute("name", "exampleRadioButton");
+    li.appendChild(radioBt);
+    li.appendChild(document.createTextNode(title));
+    
+    //evenement de click sur chaque exemple
+    li.addEventListener('click', function(){
+      li.childNodes[0].click();
+      document.getElementById('executeExample').removeAttribute("disabled");
+    });
+    
+    //ajout des exemples dans le DOM
+    examplesDiv.appendChild(li);
+  });
+  
+  
   //interraction avec la pop-up
   var executeBt = document.getElementById('executeExample');
   executeBt.addEventListener('click', function(){
-    var selected = getSelectedExample();
-    if(selected === null) return;
+    var selected = jsonData[getSelectedExample()];
+    if(selected === undefined) return;    
     var newTab = yasgui.addTab();
-    newTab.setQuery(selected.value);
+    var query = selected.content.join('\n');
+    newTab.setQuery(query);
+    var endpoint = selected.endpoint;
+    if(endpoint !== undefined) {
+      newTab.setEndpoint(endpoint);
+    }
     hidePopup(closeBt.closest('.popupContainer'));
     newTab.yasqe.query();
   });
-
+  
   var closeBt =  document.getElementById('closePopup');
   closeBt.addEventListener('click', function(){
-      hidePopup(closeBt.closest('.popupContainer'));
+    hidePopup(closeBt.closest('.popupContainer'));
   });
-
+  
   //affichage des exemples lors du click sur le bouton "voir des exemples"
   document.getElementById("showExamples").addEventListener('click', function(){ 
     if(examplesPopup.classList.contains("showPopup")){
@@ -182,11 +185,11 @@ function getSelectedExample(){
   var radios = document.getElementsByName("exampleRadioButton");
   for(var i = 0; i < radios.length; i++){
     if(radios[i].checked){
-      return radios[i];
+      return i;
     }
   }
   
-  return null;
+  return -1;
 }
 
 function showPopup(popup){
