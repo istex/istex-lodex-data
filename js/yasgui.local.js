@@ -113,6 +113,96 @@ WHERE
 `,
     "description" : "Cette interrogation d’un autre SPARQL Endpoint (celui de la BNF) illustre le nombre de résultats quand une propriété a plusieurs valeurs. Ici, un seul concept (Bioinformatique) possède plusieurs libellés. Chaque libellé donne lieu à une ligne. L’interrogation suivante montre comment réduire ce résultat à une seule ligne.",
     "endpoint" : "https://data.bnf.fr/sparql" 
+  },
+  {
+    "title" : "Concaténation des valeurs (depuis la BNF)",
+    "content" : 
+`# Il faut interroger https://data.bnf.fr/sparql au lieu de https://data.istex.fr/sparql/ 
+
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+# Affiche l'URL de la notice RAMEAU, le libellé alternatif, 
+SELECT ?NoticeRAMEAU 
+  # GROUP_CONCAT concatène des valeurs différentes d'une variable
+  #   (?AutreNom) dans une autre variable (?AutresNoms).
+  # DISTINCT retire les doublons dans un ensemble de valeurs 
+  #   (toutes les valeurs de la variable ?AutreNom).
+  GROUP_CONCAT(DISTINCT ?AutreNom; SEPARATOR=", ") AS ?AutresNoms
+  ?TermeRelie # un éventuel terme lié (skos:related)
+WHERE
+{
+  # Ce motif sélectionne les objets dont le libellé en français est Bioinformatique
+  ?uri skos:prefLabel "Bioinformatique"@fr.
+  # OPTIONAL permet de conserver le triplet courant dans ceux à afficher même si
+  #          le motif ne trouve pas de correspondance.
+  # Sélectionne un éventuel (OPTIONAL) libellé alternatif (skos:altLabel)
+  OPTIONAL { ?uri skos:altLabel ?AutreNom. }
+  # Sélectionne un terme lié (skos:related)
+  OPTIONAL { ?uri skos:related ?Relation.
+             ?Relation skos:prefLabel ?TermeRelie. }
+}
+# Groupe les triplets par toutes les variables dont 
+# les valeurs ne sont pas concaténées (GROUP_CONCAT) dans le SELECT.
+
+# GROUP BY renvoie une seule ligne pour toutes les lignes 
+# qui ont la même valeur pour les deux variables.
+GROUP BY ?NoticeRAMEAU ?TermeRelie
+`,
+    "description" : "Cette requête est similaire à la précédente (Valeurs multiples (BNF)), mais elle rassemble 4 lignes exprimant les propriétés d’un même concept en une seule.",
+    "endpoint" : "https://data.bnf.fr/sparql" 
+  },
+  {
+    "title" : "Interrogation BNF",
+    "content" :
+`# Il faut interroger https://data.bnf.fr/sparql au lieu de https://data.istex.fr/sparql/ 
+
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+# Affiche l'URL de la notice RAMEAU, le libellé alternatif, 
+SELECT ?NoticeRAMEAU 
+      # GROUP_CONCAT concatène des valeurs différentes d'une variable
+      #   (?AutreNom) dans une autre variable (?AutresNoms).
+      # DISTINCT retire les doublons dans un ensemble de valeurs 
+      #   (toutes les valeurs de la variable ?AutreNom).
+      GROUP_CONCAT(DISTINCT ?AutreNom; SEPARATOR=", ") AS ?AutresNoms
+      # affiche le(s) terme(s) générique(s)
+      (GROUP_CONCAT(DISTINCT ?TermePlusLargeTmp;SEPARATOR=" && ") AS ?TermePlusLarge)
+      # le(s) terme(s) spécifique(s)
+      (GROUP_CONCAT(DISTINCT ?TermePlusPrecisTmp;SEPARATOR=" && ") AS ?TermePlusPrecis)
+      ?TermeRelie # un éventuel terme lié (skos:related)
+      # le ou les concept(s) proche(s)
+      (GROUP_CONCAT(DISTINCT ?URIAlignement;SEPARATOR=" && ") AS ?AlignementBnf)
+WHERE
+{
+  # Ce motif sélectionne les objets dont le libellé en français est Bioinformatique
+  ?uri skos:prefLabel "Bioinformatique"@fr.
+  # OPTIONAL permet de conserver le triplet courant dans ceux à afficher même si
+  #          le motif ne trouve pas de correspondance.
+  # Sélectionne un éventuel (OPTIONAL) libellé alternatif (skos:altLabel)
+  OPTIONAL { ?uri skos:altLabel ?AutreNom. }
+  # Sélectionne l'éventuel lien vers la notice RAMEAU
+  OPTIONAL { ?uri rdfs:seeAlso ?NoticeRAMEAU. }
+  # Sélectionne le libellé d'un terme générique (skos:broader)
+  OPTIONAL { ?uri skos:broader ?URIBroader.
+             ?URIBroader skos:prefLabel ?TermePlusLargeTmp. }
+  # Sélectionne le libellé d'un terme spécifique (skos:narrower)
+  OPTIONAL { ?uri skos:narrower ?URINarrower.
+             ?URINarrower skos:prefLabel ?TermePlusPrecisTmp. }
+  # Sélectionne un alignement proche
+  OPTIONAL { ?uri skos:closeMatch ?URIAlignement. }
+  # Sélectionne un terme lié (skos:related)
+  OPTIONAL { ?uri skos:related ?Relation.
+             ?Relation skos:prefLabel ?TermeRelie. }
+}
+# Groupe les triplets par toutes les variables dont 
+# les valeurs ne sont pas concaténées (GROUP_CONCAT) dans le SELECT.
+
+# GROUP BY renvoie une seule ligne pour toutes les lignes 
+# qui ont la même valeur pour les deux variables.
+GROUP BY ?NoticeRAMEAU ?TermeRelie
+`,
+    "description" : "Affiche des informations de la BNF sur le concept « Bioinformatique », dont la notice RAMEAU, les termes génériques et spécifiques, des alignements extérieurs... Cette requête étend la requête précédente à d’autres champs.",
+    "endpoint" : "https://data.bnf.fr/sparql" 
   }
 ];
 
