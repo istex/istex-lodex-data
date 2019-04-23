@@ -1,94 +1,120 @@
-var examplesData = `
+var examplesData = 
 [
   {
     "title" : "Liste de dix triplets",
-    "content" : [
-      "SELECT * # Affiche toutes les variables",
-      "WHERE {",
-      "  # Un motif de triplet, ou chaque partie est une variable",
-      "  ?subject ?verb ?complement .",
-      "}",
-      "OFFSET 1000 # Démarre au millième triplet",
-      "LIMIT 10 # Ne prend que 10 triplets"
-    ],
+    "content" : 
+
+`SELECT * # Affiche toutes les variables
+WHERE {
+  # Un motif de triplet, ou chaque partie est une variable
+  ?subject ?verb ?complement .
+}
+OFFSET 1000 # Démarre au millième triplet
+LIMIT 10 # Ne prend que 10 triplets"
+`,
+
     "description" : "Liste dix triplets, à partir du numéro 1000."
   },
   {
     "title" : "Nombre de triplets",
-    "content" : [
-      "SELECT (COUNT(*) as ?nb) # Compte les triplets trouvés",
-      "WHERE {",
-      "  # Pas de contrainte particulière",
-      "  ?subject ?verb ?complement",
-      "}"
-    ],
+    "content" : 
+`SELECT (COUNT(*) as ?nb) # Compte les triplets trouvés
+WHERE {
+  # Pas de contrainte particulière
+  ?subject ?verb ?complement
+}
+`,
     "description" : "Compte tous les triplets présents dans le triple store (y compris les triplets par défaut ajoutés par OpenLink Virtuoso)."
   },
   {
     "title" : "Nombre de triplets par graphe nommé",
-    "content" : [
-      "# Affiche la variable ?g à côté du comptage des triplets correspondant",
-      "# Ce comptage est stocké dans la variable ?nb",
-      "SELECT ?g (COUNT(*) AS ?nb)",
-      "WHERE {",
-      "  # ?subject ?verb ?complement est le triplet appartenant au",
-      "  # graphe nommé ?g",
-      "  # Un graphe nommé est un sous-ensemble de triplets.",
-      "  GRAPH ?g { ?subject ?verb ?complement . }",
-      "}",
-      "GROUP BY ?g # Groupe les triplets par graphe nommé",
-      "ORDER BY DESC(?nb) # Trie les graphes par nombre de triplets"
-    ],
+    "content" :
+`# Affiche la variable ?g à côté du comptage des triplets correspondant
+# Ce comptage est stocké dans la variable ?nb
+SELECT ?g (COUNT(*) AS ?nb)
+WHERE {
+  # ?subject ?verb ?complement est le triplet appartenant au
+  # graphe nommé ?g
+  # Un graphe nommé est un sous-ensemble de triplets.
+  GRAPH ?g { ?subject ?verb ?complement . }
+}
+GROUP BY ?g # Groupe les triplets par graphe nommé
+ORDER BY DESC(?nb) # Trie les graphes par nombre de triplets
+`,
     "description" : "Donne la répartition des triplets par graphe nommé. Un graphe nommé étant une sous-partie du graphe global contenant tous les triplets."
   },
   {
     "title" : "Triplets d’un graphe nommé",
-    "content" : [
-      "# Affiche toutes les variables (dans ce cas, elles constituent un triplet)",
-      "SELECT *",
-      "FROM <https://enrichment-process.data.istex.fr/notice/graph> # Graphe dans lequel on cherche",
-      "WHERE {",
-      "  ?subject ?verb ?complement .",
-      "}",
-      "LIMIT 100 # Limite le nombre de réponses à 100"
-    ],
+    "content" : 
+`# Affiche toutes les variables (dans ce cas, elles constituent un triplet)
+SELECT *
+FROM <https://enrichment-process.data.istex.fr/notice/graph> # Graphe dans lequel on cherche
+WHERE {
+  ?subject ?verb ?complement .
+}
+LIMIT 100 # Limite le nombre de réponses à 100
+`,
     "description" : "Affiche les cent premiers triplets d’un graphe nommé particulier. Quand on ne sélectionne pas de graphe nommé, la requête cherche dans tous les graphes nommés du système (c’est-à-dire tous les triplets)."
   },
   {
     "title" : "Triplets de deux graphes nommés",
-    "content" : [
-      "SELECT *",
-      "# On peut chercher dans plusieurs graphes nommés (et dans aucun autre),",
-      "# en utilisant l’instruction FROM plusieurs fois.",
-      "FROM <https://enrichment-process.data.istex.fr/notice/graph>",
-      "FROM <https://wos-category.data.istex.fr/notice/graph>",
-      "WHERE {",
-      "  ?subject ?verb ?complement .",
-      "}",
-      "LIMIT 100"
-    ],
+    "content" : 
+`SELECT *
+# On peut chercher dans plusieurs graphes nommés (et dans aucun autre),
+# en utilisant l’instruction FROM plusieurs fois.
+FROM <https://enrichment-process.data.istex.fr/notice/graph>
+FROM <https://wos-category.data.istex.fr/notice/graph>
+WHERE {
+  ?subject ?verb ?complement .
+}
+LIMIT 100
+`,
     "description" : "Affiche les cent premiers triplets de deux graphes nommés particuliers."
   },
   {
     "title" : "Récupération du label du type d’un document (avec filtrage sur la langue)",
-    "content" : [
-      "# Déclaration d’un préfixe.",
-      "# Dans la suite de la requête, skos: sera remplacé par # http://www.w3.org/2004/02/skos/core#",
-      "PREFIX skos: <http://www.w3.org/2004/02/skos/core#>",
-      "SELECT *",
-      "WHERE {",
-      "  # Le document ark:/67375/996-HMN8BG45-4 a un type de publication (istex:publicationType)",
-      "  # qui est affecté à la variable ?pt.",
-      "  <https://api.istex.fr/ark:/67375/996-HMN8BG45-4> ",
-      "  <https://data.istex.fr/ontology/istex#publicationType> ?pt .",
-      "    ?pt skos:prefLabel ?label . # ?pt est le point commun entre les triplets.",
-      "  # skos:prefLabel est la propriété liant un type de publication à son libellé.",
-      "  FILTER(LANG(?label) = 'fr') # Ne garde que les cas où ?label est en français.",
-      "}"
-    ],
+    "content" : 
+`# Déclaration d’un préfixe.
+# Dans la suite de la requête, skos: sera remplacé par # http://www.w3.org/2004/02/skos/core#
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+SELECT *
+WHERE {
+  # Le document ark:/67375/996-HMN8BG45-4 a un type de publication (istex:publicationType)
+  # qui est affecté à la variable ?pt.
+  <https://api.istex.fr/ark:/67375/996-HMN8BG45-4> 
+  <https://data.istex.fr/ontology/istex#publicationType> ?pt .
+    ?pt skos:prefLabel ?label . # ?pt est le point commun entre les triplets.
+  # skos:prefLabel est la propriété liant un type de publication à son libellé.
+  FILTER(LANG(?label) = 'fr') # Ne garde que les cas où ?label est en français.
+}
+`,
     "description" : "Affiche des informations attachées à un document ISTEX particulier. En l’occurrence, son type de publication, exprimé en français."
+  },
+  {
+    "title" : "Valeurs multiples (depuis la BNF)",
+    "content" :
+`# Il faut interroger https://data.bnf.fr/sparql au lieu de https://data.istex.fr/sparql/
+      
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+SELECT *
+WHERE
+{
+  # Ce motif sélectionne les objets dont le libellé en français est Bioinformatique
+  ?uri skos:prefLabel "Bioinformatique"@fr.
+  # OPTIONAL permet de conserver le triplet courant dans ceux à afficher même si
+  #     le motif ne trouve pas de correspondance.
+  # Sélectionne un éventuel (OPTIONAL) libellé alternatif (skos:altLabel)
+  OPTIONAL { ?uri skos:altLabel ?AutreNom. }
+  # Sélectionne un terme lié (skos:related)
+  OPTIONAL { ?uri skos:related ?Relation.
+  ?Relation skos:prefLabel ?TermeRelie. }
+}
+`,
+    "description" : "Cette interrogation d’un autre SPARQL Endpoint (celui de la BNF) illustre le nombre de résultats quand une propriété a plusieurs valeurs. Ici, un seul concept (Bioinformatique) possède plusieurs libellés. Chaque libellé donne lieu à une ligne. L’interrogation suivante montre comment réduire ce résultat à une seule ligne.",
+    "endpoint" : "https://data.bnf.fr/sparql" 
   }
-]`;
+];
 
 setTimeout(function(){
   YASGUI.YASQE.defaults.value = `SELECT *
@@ -121,7 +147,7 @@ setTimeout(function(){
   //chargement des exemples depuis le fichier json
   var examplesPopup = document.getElementById("popupExamples");
   var examplesDiv = document.getElementById("examples"); 
-  var jsonData = JSON.parse(examplesData);
+  var jsonData = examplesData;
   jsonData.forEach((jsonElement) => {
     //recuperation et formattage des données
     var title = jsonElement.title;
@@ -155,7 +181,7 @@ setTimeout(function(){
     var selected = jsonData[getSelectedExample()];
     if(selected === undefined) return;    
     var newTab = yasgui.addTab();
-    var query = selected.content.join('\n');
+    var query = selected.content;
     newTab.setQuery(query);
     var endpoint = selected.endpoint;
     if(endpoint !== undefined) {
