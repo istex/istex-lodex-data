@@ -56,7 +56,7 @@
 }
 
 .popupHeader {
-    border-bottom: 1px solid #CCC;
+    border-bottom: 1px solid #AAA;
     padding: 10px;
 }
 
@@ -66,7 +66,7 @@
 }
 
 .popupFooter {
-    border-top: 1px solid #CCC;
+    border-top: 1px solid #AAA;
     padding: 10px;
     text-align: right;
 }
@@ -94,4 +94,10 @@
 .exampleItem input[type="radio"]{
     margin-right: 4px;
     vertical-align: top;
+}
+
+#examples hr{
+    border-color: #CCC;
+    background-color: #CCC;
+    color: #CCC;
 }

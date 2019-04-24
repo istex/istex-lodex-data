@@ -203,6 +203,9 @@ GROUP BY ?NoticeRAMEAU ?TermeRelie
 `,
     "description" : "Affiche des informations de la BNF sur le concept « Bioinformatique », dont la notice RAMEAU, les termes génériques et spécifiques, des alignements extérieurs... Cette requête étend la requête précédente à d’autres champs.",
     "endpoint" : "https://data.bnf.fr/sparql" 
+  },
+  {
+    "title" : "---"
   }
 ];
 
@@ -242,6 +245,12 @@ setTimeout(function(){
     //recuperation et formattage des données
     var title = jsonElement.title;
     var description = jsonElement.description;
+
+    if(title === "---"){
+      var hr = document.createElement("hr");
+      examplesDiv.appendChild(hr);
+      return;
+    }
     
     //creation du html correspondant
     var li = document.createElement("li");
