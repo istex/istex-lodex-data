@@ -361,6 +361,11 @@ setTimeout(function(){
   
   
   //interraction avec la pop-up
+  examplesPopup.addEventListener('click', function(event){
+    if(examplesPopup !== event.target) return;
+    hidePopup(examplesPopup);
+  });
+
   var executeBt = document.getElementById('executeExample');
   executeBt.addEventListener('click', function(){
     var selected = examplesData[getSelectedExample()];
