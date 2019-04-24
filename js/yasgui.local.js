@@ -206,6 +206,16 @@ GROUP BY ?NoticeRAMEAU ?TermeRelie
   },
   {
     "title" : "---"
+  },
+  {
+    "title" : "Nombre de triplets par graphe nommé",
+    "content" :
+`select distinct ?g, count(*) as ?nb
+where {
+  graph ?g { ?s ?p ?o }
+}
+`,
+    "description" : "Trouver tous les graphes de notre triplestore avec le nombre de triplets correspondant"
   }
 ];
 
@@ -241,7 +251,9 @@ setTimeout(function(){
   var examplesPopup = document.getElementById("popupExamples");
   var examplesDiv = document.getElementById("examples"); 
   var jsonData = examplesData;
+  var index = -1;
   jsonData.forEach((jsonElement) => {
+    index++;
     //recuperation et formattage des données
     var title = jsonElement.title;
     var description = jsonElement.description;
@@ -260,6 +272,7 @@ setTimeout(function(){
     var radioBt = document.createElement('input');
     radioBt.setAttribute("type", "radio");
     radioBt.setAttribute("name", "exampleRadioButton");
+    radioBt.setAttribute("value", index);
     li.appendChild(radioBt);
     li.appendChild(document.createTextNode(title));
     
@@ -312,7 +325,7 @@ function getSelectedExample(){
   var radios = document.getElementsByName("exampleRadioButton");
   for(var i = 0; i < radios.length; i++){
     if(radios[i].checked){
-      return i;
+      return radios[i].value;
     }
   }
   
