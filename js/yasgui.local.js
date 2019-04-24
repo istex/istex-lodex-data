@@ -210,12 +210,86 @@ GROUP BY ?NoticeRAMEAU ?TermeRelie
   {
     "title" : "Nombre de triplets par graphe nommé",
     "content" :
-`select distinct ?g, count(*) as ?nb
-where {
+`SELECT DISTINCT ?g, count(*) AS ?nb
+WHERE {
   graph ?g { ?s ?p ?o }
 }
 `,
     "description" : "Trouver tous les graphes de notre triplestore avec le nombre de triplets correspondant"
+  },
+  {
+    "title" : "Propriétés d’un graphe",
+    "content" :
+`SELECT DISTINCT ?p
+FROM <https://scopus-category.data.istex.fr/graph>
+WHERE {
+  ?s ?p ?o
+}
+`,
+    "description" : "Trouver les propriétés pour le graphe « scopus-category.data.istex.fr »"
+  },
+  {
+    "title" : "Nombre d’articles de recherche",
+    "content" :
+`SELECT (count (?docistex) AS ?nombredocistex)
+WHERE
+{
+  ?docistex <https://data.istex.fr/ontology/istex#contentType> ?conttype.
+  ?conttype <http://www.w3.org/2004/02/skos/core#prefLabel> "papier de recherche"@fr
+}
+`,
+    "description" : "Combien y a-t-il de documents correspondant au type de document (ou genre) « article de recherche » ?"
+  },
+  {
+    "title" : "Catégories Inist des papiers de recherche",
+    "content" :
+`SELECT (count (?docistex) AS ?totaldocistex) ?catinist
+WHERE
+{
+?docistex <https://data.istex.fr/ontology/istex#contentType> ?conttype.
+?conttype <http://www.w3.org/2004/02/skos/core#prefLabel> "papier de recherche"@fr.
+?docistex <https://data.istex.fr/ontology/istex#subjectInist> ?subjectInist.
+?subjectInist <http://www.w3.org/2004/02/skos/core#prefLabel> ?catinist.
+  filter (lang(?catinist)= "fr")
+}
+ORDER BY desc (?totaldocistex)
+`,
+    "description" : "La répartition des catégories inist pour le content type « papier de recherche »@fr"
+  },
+  {
+    "title" : "Pourcentage des catégories Inist",
+    "content" :
+`SELECT 
+  ?libellecatinist 
+	(count(?libellecatinist) as ?totallibellecatinist) 
+	(count (?libellecatinist)*1000/?totalcontentTypePDR as ?perThousand)
+WHERE
+{
+	{
+    # libellés en français des catégories Inist des documents dont le type est "papier de recherche"
+		select ?libellecatinist
+ 		where
+ 		{
+			?docistex <https://data.istex.fr/ontology/istex#contentType> ?conttype.
+            ?conttype <http://www.w3.org/2004/02/skos/core#prefLabel> "papier de recherche"@fr.
+            ?docistex <https://data.istex.fr/ontology/istex#subjectInist> ?catinist.
+            ?catinist <http://www.w3.org/2004/02/skos/core#prefLabel> ?libellecatinist.
+   			filter(lang(?libellecatinist)= "fr")
+		}
+	}
+	{
+    # Nombre total de documents de type "papier de recherche"
+		select (count(?docistex) as ?totalcontentTypePDR)
+ 		where
+		{  
+          ?docistex <https://data.istex.fr/ontology/istex#contentType> ?conttype.
+          ?conttype <http://www.w3.org/2004/02/skos/core#prefLabel> "papier de recherche"@fr.
+    	}
+	}
+}
+order by desc (?perThousand)
+`,
+    "description" : "la répartition « catégorie inist » pour le content type « papier de recherche »@fr, exprimée en pourcentage."
   }
 ];
 
