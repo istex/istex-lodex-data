@@ -7,14 +7,19 @@
 .btn, .btn:focus {
     margin-top: 10px;
     margin-bottom: 10px;
-    color: #c4d733;
-    background-color: #242b32;
+    color: #458CA5;
+    border: 1px solid #458CA5;
+    border-radius: 0;
+    background-color: transparent;
     transition: color 0.3s;
+    font-weight: bold;
     cursor: pointer;
 }
 
 .btn:hover, .btn:focus:hover {
-    color: #458ca5;
+    border-color: #000;
+    color: black;
+    background-color: #C4D733;
 }
 
 .popupContainer {
