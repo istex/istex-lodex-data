@@ -324,9 +324,8 @@ setTimeout(function(){
   //chargement des exemples depuis le fichier json
   var examplesPopup = document.getElementById("popupExamples");
   var examplesDiv = document.getElementById("examples"); 
-  var jsonData = examplesData;
   var index = -1;
-  jsonData.forEach((jsonElement) => {
+  examplesData.forEach((jsonElement) => {
     index++;
     //recuperation et formattage des données
     var title = jsonElement.title;
@@ -364,7 +363,7 @@ setTimeout(function(){
   //interraction avec la pop-up
   var executeBt = document.getElementById('executeExample');
   executeBt.addEventListener('click', function(){
-    var selected = jsonData[getSelectedExample()];
+    var selected = examplesData[getSelectedExample()];
     if(selected === undefined) return;    
     var newTab = yasgui.addTab();
     var query = selected.content;
