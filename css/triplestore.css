@@ -65,9 +65,20 @@
     padding: 10px;
 }
 
-.popupTitle
-{
+.popupTitle {
     font-weight: bolder;
+}
+
+#closePopup {
+    position: absolute;
+    right: 12px;
+    top : 12px;
+    cursor: pointer;
+}
+
+#closePopup img {
+    width: 20px;
+    height: 20px;
 }
 
 .popupFooter {
