@@ -387,6 +387,13 @@ setTimeout(function(){
   closeBt.addEventListener('click', function(){
     hidePopup(closeBt.closest('.popupContainer'));
   });
+
+
+  document.addEventListener('keyup', function(event){
+    if(examplesPopup.classList.contains("showPopup") && event.code === "Escape"){
+      hidePopup(examplesPopup);
+    }
+  });
   
   //affichage des exemples lors du click sur le bouton "voir des exemples"
   document.getElementById("showExamples").addEventListener('click', function(){ 
