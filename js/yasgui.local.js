@@ -371,6 +371,7 @@ setTimeout(function(){
     var selected = examplesData[getSelectedExample()];
     if(selected === undefined) return;    
     var newTab = yasgui.addTab();
+    newTab.rename(selected.title);
     var query = selected.content;
     newTab.setQuery(query);
     var endpoint = selected.endpoint;
@@ -388,12 +389,6 @@ setTimeout(function(){
     hidePopup(closeBt.closest('.popupContainer'));
   });
 
-
-  document.addEventListener('keyup', function(event){
-    if(examplesPopup.classList.contains("showPopup") && event.code === "Escape"){
-      hidePopup(examplesPopup);
-    }
-  });
   
   //affichage des exemples lors du click sur le bouton "voir des exemples"
   document.getElementById("showExamples").addEventListener('click', function(){ 
@@ -401,6 +396,13 @@ setTimeout(function(){
       hidePopup(examplesPopup);
     }else{
       showPopup(examplesPopup);
+    }
+  });
+
+  // detection du clavier
+  document.addEventListener('keyup', function(event){
+    if(examplesPopup.classList.contains("showPopup") && event.code === "Escape"){
+      hidePopup(examplesPopup);
     }
   });
   
