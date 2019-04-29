@@ -13,6 +13,7 @@
     background-color: transparent;
     transition: color 0.3s;
     font-weight: bold;
+    text-transform: uppercase;
     cursor: pointer;
 }
 
@@ -36,8 +37,8 @@
 }
 
 .showPopup {
-   visibility: visible;
-   opacity: 1;
+    visibility: visible;
+    opacity: 1;
 }
 
 .hidePopup {
@@ -49,6 +50,7 @@
     min-width: 500px;
     border: 1px solid #242b32;
     background: url(/img/BG_ISTEX_LIGHT_DESKTOP.jpg) center repeat;
+    /* background-color: #ECECEC; */
     color: #242b32;
     border-radius: 7px;
     box-shadow: 0 5px 15px rgba(0,0,0,.5);
@@ -66,6 +68,7 @@
 }
 
 .popupTitle {
+    padding: 10px;
     font-weight: bolder;
 }
 
@@ -81,6 +84,12 @@
     height: 20px;
 }
 
+.popupBody{
+    padding: 0px;
+    max-height: 50vh;
+    overflow-y: scroll;
+}
+
 .popupFooter {
     border-top: 1px solid #AAA;
     padding: 10px;
@@ -94,13 +103,21 @@
 #examples {
     list-style-type: none;
     margin: 0;
-    padding: 5px;
+    padding: 0;
 }
 
 .exampleItem {
     transition: background-color 0.3s;
-    padding: 2px;
+    padding: 4px 20px;
     cursor: pointer;
+}
+
+.exampleItem:first-child {
+    margin-top: 10px;
+}
+
+.exampleItem:last-child {
+    margin-bottom: 20px;
 }
 
 .exampleItem:hover {
@@ -108,7 +125,7 @@
 }
 
 .exampleItem input[type="radio"]{
-    margin-right: 4px;
+    margin-right : 10px;
     vertical-align: top;
 }
 

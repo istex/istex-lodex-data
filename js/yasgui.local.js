@@ -290,15 +290,1098 @@ WHERE
 order by desc (?perThousand)
 `,
     "description" : "la répartition « catégorie inist » pour le content type « papier de recherche »@fr, exprimée en pourcentage."
+  },
+  {
+    "title" : "---"
+  },{
+    "title" : "Faux exemple 1",
+    "description" : "Ceci est un exemple factice",
+    "content" :
+`SELECT *
+WHERE {
+  ?subject ?verb ?complement .
+}
+LIMIT 100`
+  },{
+    "title" : "Faux exemple 2",
+    "description" : "Ceci est un exemple factice",
+    "content" :
+`SELECT *
+WHERE {
+  ?subject ?verb ?complement .
+}
+LIMIT 100`
+  },{
+    "title" : "Faux exemple 3",
+    "description" : "Ceci est un exemple factice",
+    "content" :
+`SELECT *
+WHERE {
+  ?subject ?verb ?complement .
+}
+LIMIT 100`
+  },{
+    "title" : "Faux exemple 4",
+    "description" : "Ceci est un exemple factice",
+    "content" :
+`SELECT *
+WHERE {
+  ?subject ?verb ?complement .
+}
+LIMIT 100`
+  },{
+    "title" : "Faux exemple 5",
+    "description" : "Ceci est un exemple factice",
+    "content" :
+`SELECT *
+WHERE {
+  ?subject ?verb ?complement .
+}
+LIMIT 100`
+  },{
+    "title" : "Faux exemple 6",
+    "description" : "Ceci est un exemple factice",
+    "content" :
+`SELECT *
+WHERE {
+  ?subject ?verb ?complement .
+}
+LIMIT 100`
+  },{
+    "title" : "Faux exemple 7",
+    "description" : "Ceci est un exemple factice",
+    "content" :
+`SELECT *
+WHERE {
+  ?subject ?verb ?complement .
+}
+LIMIT 100`
+  },{
+    "title" : "Faux exemple 8",
+    "description" : "Ceci est un exemple factice",
+    "content" :
+`SELECT *
+WHERE {
+  ?subject ?verb ?complement .
+}
+LIMIT 100`
+  },{
+    "title" : "Faux exemple 9",
+    "description" : "Ceci est un exemple factice",
+    "content" :
+`SELECT *
+WHERE {
+  ?subject ?verb ?complement .
+}
+LIMIT 100`
+  },{
+    "title" : "Faux exemple 10",
+    "description" : "Ceci est un exemple factice",
+    "content" :
+`SELECT *
+WHERE {
+  ?subject ?verb ?complement .
+}
+LIMIT 100`
+  },{
+    "title" : "Faux exemple 11",
+    "description" : "Ceci est un exemple factice",
+    "content" :
+`SELECT *
+WHERE {
+  ?subject ?verb ?complement .
+}
+LIMIT 100`
+  },{
+    "title" : "Faux exemple 12",
+    "description" : "Ceci est un exemple factice",
+    "content" :
+`SELECT *
+WHERE {
+  ?subject ?verb ?complement .
+}
+LIMIT 100`
+  },{
+    "title" : "Faux exemple 13",
+    "description" : "Ceci est un exemple factice",
+    "content" :
+`SELECT *
+WHERE {
+  ?subject ?verb ?complement .
+}
+LIMIT 100`
+  },{
+    "title" : "Faux exemple 14",
+    "description" : "Ceci est un exemple factice",
+    "content" :
+`SELECT *
+WHERE {
+  ?subject ?verb ?complement .
+}
+LIMIT 100`
+  },{
+    "title" : "Faux exemple 15",
+    "description" : "Ceci est un exemple factice",
+    "content" :
+`SELECT *
+WHERE {
+  ?subject ?verb ?complement .
+}
+LIMIT 100`
+  },{
+    "title" : "Faux exemple 16",
+    "description" : "Ceci est un exemple factice",
+    "content" :
+`SELECT *
+WHERE {
+  ?subject ?verb ?complement .
+}
+LIMIT 100`
+  },{
+    "title" : "Faux exemple 17",
+    "description" : "Ceci est un exemple factice",
+    "content" :
+`SELECT *
+WHERE {
+  ?subject ?verb ?complement .
+}
+LIMIT 100`
+  },{
+    "title" : "Faux exemple 18",
+    "description" : "Ceci est un exemple factice",
+    "content" :
+`SELECT *
+WHERE {
+  ?subject ?verb ?complement .
+}
+LIMIT 100`
+  },{
+    "title" : "Faux exemple 19",
+    "description" : "Ceci est un exemple factice",
+    "content" :
+`SELECT *
+WHERE {
+  ?subject ?verb ?complement .
+}
+LIMIT 100`
+  },{
+    "title" : "Faux exemple 20",
+    "description" : "Ceci est un exemple factice",
+    "content" :
+`SELECT *
+WHERE {
+  ?subject ?verb ?complement .
+}
+LIMIT 100`
+  },{
+    "title" : "Faux exemple 1",
+    "description" : "Ceci est un exemple factice",
+    "content" :
+`SELECT *
+WHERE {
+  ?subject ?verb ?complement .
+}
+LIMIT 100`
+  },{
+    "title" : "Faux exemple 2",
+    "description" : "Ceci est un exemple factice",
+    "content" :
+`SELECT *
+WHERE {
+  ?subject ?verb ?complement .
+}
+LIMIT 100`
+  },{
+    "title" : "Faux exemple 3",
+    "description" : "Ceci est un exemple factice",
+    "content" :
+`SELECT *
+WHERE {
+  ?subject ?verb ?complement .
+}
+LIMIT 100`
+  },{
+    "title" : "Faux exemple 4",
+    "description" : "Ceci est un exemple factice",
+    "content" :
+`SELECT *
+WHERE {
+  ?subject ?verb ?complement .
+}
+LIMIT 100`
+  },{
+    "title" : "Faux exemple 5",
+    "description" : "Ceci est un exemple factice",
+    "content" :
+`SELECT *
+WHERE {
+  ?subject ?verb ?complement .
+}
+LIMIT 100`
+  },{
+    "title" : "Faux exemple 6",
+    "description" : "Ceci est un exemple factice",
+    "content" :
+`SELECT *
+WHERE {
+  ?subject ?verb ?complement .
+}
+LIMIT 100`
+  },{
+    "title" : "Faux exemple 7",
+    "description" : "Ceci est un exemple factice",
+    "content" :
+`SELECT *
+WHERE {
+  ?subject ?verb ?complement .
+}
+LIMIT 100`
+  },{
+    "title" : "Faux exemple 8",
+    "description" : "Ceci est un exemple factice",
+    "content" :
+`SELECT *
+WHERE {
+  ?subject ?verb ?complement .
+}
+LIMIT 100`
+  },{
+    "title" : "Faux exemple 9",
+    "description" : "Ceci est un exemple factice",
+    "content" :
+`SELECT *
+WHERE {
+  ?subject ?verb ?complement .
+}
+LIMIT 100`
+  },{
+    "title" : "Faux exemple 10",
+    "description" : "Ceci est un exemple factice",
+    "content" :
+`SELECT *
+WHERE {
+  ?subject ?verb ?complement .
+}
+LIMIT 100`
+  },{
+    "title" : "Faux exemple 11",
+    "description" : "Ceci est un exemple factice",
+    "content" :
+`SELECT *
+WHERE {
+  ?subject ?verb ?complement .
+}
+LIMIT 100`
+  },{
+    "title" : "Faux exemple 12",
+    "description" : "Ceci est un exemple factice",
+    "content" :
+`SELECT *
+WHERE {
+  ?subject ?verb ?complement .
+}
+LIMIT 100`
+  },{
+    "title" : "Faux exemple 13",
+    "description" : "Ceci est un exemple factice",
+    "content" :
+`SELECT *
+WHERE {
+  ?subject ?verb ?complement .
+}
+LIMIT 100`
+  },{
+    "title" : "Faux exemple 14",
+    "description" : "Ceci est un exemple factice",
+    "content" :
+`SELECT *
+WHERE {
+  ?subject ?verb ?complement .
+}
+LIMIT 100`
+  },{
+    "title" : "Faux exemple 15",
+    "description" : "Ceci est un exemple factice",
+    "content" :
+`SELECT *
+WHERE {
+  ?subject ?verb ?complement .
+}
+LIMIT 100`
+  },{
+    "title" : "Faux exemple 16",
+    "description" : "Ceci est un exemple factice",
+    "content" :
+`SELECT *
+WHERE {
+  ?subject ?verb ?complement .
+}
+LIMIT 100`
+  },{
+    "title" : "Faux exemple 17",
+    "description" : "Ceci est un exemple factice",
+    "content" :
+`SELECT *
+WHERE {
+  ?subject ?verb ?complement .
+}
+LIMIT 100`
+  },{
+    "title" : "Faux exemple 18",
+    "description" : "Ceci est un exemple factice",
+    "content" :
+`SELECT *
+WHERE {
+  ?subject ?verb ?complement .
+}
+LIMIT 100`
+  },{
+    "title" : "Faux exemple 19",
+    "description" : "Ceci est un exemple factice",
+    "content" :
+`SELECT *
+WHERE {
+  ?subject ?verb ?complement .
+}
+LIMIT 100`
+  },{
+    "title" : "Faux exemple 20",
+    "description" : "Ceci est un exemple factice",
+    "content" :
+`SELECT *
+WHERE {
+  ?subject ?verb ?complement .
+}
+LIMIT 100`
+  },{
+    "title" : "Faux exemple 1",
+    "description" : "Ceci est un exemple factice",
+    "content" :
+`SELECT *
+WHERE {
+  ?subject ?verb ?complement .
+}
+LIMIT 100`
+  },{
+    "title" : "Faux exemple 2",
+    "description" : "Ceci est un exemple factice",
+    "content" :
+`SELECT *
+WHERE {
+  ?subject ?verb ?complement .
+}
+LIMIT 100`
+  },{
+    "title" : "Faux exemple 3",
+    "description" : "Ceci est un exemple factice",
+    "content" :
+`SELECT *
+WHERE {
+  ?subject ?verb ?complement .
+}
+LIMIT 100`
+  },{
+    "title" : "Faux exemple 4",
+    "description" : "Ceci est un exemple factice",
+    "content" :
+`SELECT *
+WHERE {
+  ?subject ?verb ?complement .
+}
+LIMIT 100`
+  },{
+    "title" : "Faux exemple 5",
+    "description" : "Ceci est un exemple factice",
+    "content" :
+`SELECT *
+WHERE {
+  ?subject ?verb ?complement .
+}
+LIMIT 100`
+  },{
+    "title" : "Faux exemple 6",
+    "description" : "Ceci est un exemple factice",
+    "content" :
+`SELECT *
+WHERE {
+  ?subject ?verb ?complement .
+}
+LIMIT 100`
+  },{
+    "title" : "Faux exemple 7",
+    "description" : "Ceci est un exemple factice",
+    "content" :
+`SELECT *
+WHERE {
+  ?subject ?verb ?complement .
+}
+LIMIT 100`
+  },{
+    "title" : "Faux exemple 8",
+    "description" : "Ceci est un exemple factice",
+    "content" :
+`SELECT *
+WHERE {
+  ?subject ?verb ?complement .
+}
+LIMIT 100`
+  },{
+    "title" : "Faux exemple 9",
+    "description" : "Ceci est un exemple factice",
+    "content" :
+`SELECT *
+WHERE {
+  ?subject ?verb ?complement .
+}
+LIMIT 100`
+  },{
+    "title" : "Faux exemple 10",
+    "description" : "Ceci est un exemple factice",
+    "content" :
+`SELECT *
+WHERE {
+  ?subject ?verb ?complement .
+}
+LIMIT 100`
+  },{
+    "title" : "Faux exemple 11",
+    "description" : "Ceci est un exemple factice",
+    "content" :
+`SELECT *
+WHERE {
+  ?subject ?verb ?complement .
+}
+LIMIT 100`
+  },{
+    "title" : "Faux exemple 12",
+    "description" : "Ceci est un exemple factice",
+    "content" :
+`SELECT *
+WHERE {
+  ?subject ?verb ?complement .
+}
+LIMIT 100`
+  },{
+    "title" : "Faux exemple 13",
+    "description" : "Ceci est un exemple factice",
+    "content" :
+`SELECT *
+WHERE {
+  ?subject ?verb ?complement .
+}
+LIMIT 100`
+  },{
+    "title" : "Faux exemple 14",
+    "description" : "Ceci est un exemple factice",
+    "content" :
+`SELECT *
+WHERE {
+  ?subject ?verb ?complement .
+}
+LIMIT 100`
+  },{
+    "title" : "Faux exemple 15",
+    "description" : "Ceci est un exemple factice",
+    "content" :
+`SELECT *
+WHERE {
+  ?subject ?verb ?complement .
+}
+LIMIT 100`
+  },{
+    "title" : "Faux exemple 16",
+    "description" : "Ceci est un exemple factice",
+    "content" :
+`SELECT *
+WHERE {
+  ?subject ?verb ?complement .
+}
+LIMIT 100`
+  },{
+    "title" : "Faux exemple 17",
+    "description" : "Ceci est un exemple factice",
+    "content" :
+`SELECT *
+WHERE {
+  ?subject ?verb ?complement .
+}
+LIMIT 100`
+  },{
+    "title" : "Faux exemple 18",
+    "description" : "Ceci est un exemple factice",
+    "content" :
+`SELECT *
+WHERE {
+  ?subject ?verb ?complement .
+}
+LIMIT 100`
+  },{
+    "title" : "Faux exemple 19",
+    "description" : "Ceci est un exemple factice",
+    "content" :
+`SELECT *
+WHERE {
+  ?subject ?verb ?complement .
+}
+LIMIT 100`
+  },{
+    "title" : "Faux exemple 20",
+    "description" : "Ceci est un exemple factice",
+    "content" :
+`SELECT *
+WHERE {
+  ?subject ?verb ?complement .
+}
+LIMIT 100`
+  },{
+    "title" : "Faux exemple 1",
+    "description" : "Ceci est un exemple factice",
+    "content" :
+`SELECT *
+WHERE {
+  ?subject ?verb ?complement .
+}
+LIMIT 100`
+  },{
+    "title" : "Faux exemple 2",
+    "description" : "Ceci est un exemple factice",
+    "content" :
+`SELECT *
+WHERE {
+  ?subject ?verb ?complement .
+}
+LIMIT 100`
+  },{
+    "title" : "Faux exemple 3",
+    "description" : "Ceci est un exemple factice",
+    "content" :
+`SELECT *
+WHERE {
+  ?subject ?verb ?complement .
+}
+LIMIT 100`
+  },{
+    "title" : "Faux exemple 4",
+    "description" : "Ceci est un exemple factice",
+    "content" :
+`SELECT *
+WHERE {
+  ?subject ?verb ?complement .
+}
+LIMIT 100`
+  },{
+    "title" : "Faux exemple 5",
+    "description" : "Ceci est un exemple factice",
+    "content" :
+`SELECT *
+WHERE {
+  ?subject ?verb ?complement .
+}
+LIMIT 100`
+  },{
+    "title" : "Faux exemple 6",
+    "description" : "Ceci est un exemple factice",
+    "content" :
+`SELECT *
+WHERE {
+  ?subject ?verb ?complement .
+}
+LIMIT 100`
+  },{
+    "title" : "Faux exemple 7",
+    "description" : "Ceci est un exemple factice",
+    "content" :
+`SELECT *
+WHERE {
+  ?subject ?verb ?complement .
+}
+LIMIT 100`
+  },{
+    "title" : "Faux exemple 8",
+    "description" : "Ceci est un exemple factice",
+    "content" :
+`SELECT *
+WHERE {
+  ?subject ?verb ?complement .
+}
+LIMIT 100`
+  },{
+    "title" : "Faux exemple 9",
+    "description" : "Ceci est un exemple factice",
+    "content" :
+`SELECT *
+WHERE {
+  ?subject ?verb ?complement .
+}
+LIMIT 100`
+  },{
+    "title" : "Faux exemple 10",
+    "description" : "Ceci est un exemple factice",
+    "content" :
+`SELECT *
+WHERE {
+  ?subject ?verb ?complement .
+}
+LIMIT 100`
+  },{
+    "title" : "Faux exemple 11",
+    "description" : "Ceci est un exemple factice",
+    "content" :
+`SELECT *
+WHERE {
+  ?subject ?verb ?complement .
+}
+LIMIT 100`
+  },{
+    "title" : "Faux exemple 12",
+    "description" : "Ceci est un exemple factice",
+    "content" :
+`SELECT *
+WHERE {
+  ?subject ?verb ?complement .
+}
+LIMIT 100`
+  },{
+    "title" : "Faux exemple 13",
+    "description" : "Ceci est un exemple factice",
+    "content" :
+`SELECT *
+WHERE {
+  ?subject ?verb ?complement .
+}
+LIMIT 100`
+  },{
+    "title" : "Faux exemple 14",
+    "description" : "Ceci est un exemple factice",
+    "content" :
+`SELECT *
+WHERE {
+  ?subject ?verb ?complement .
+}
+LIMIT 100`
+  },{
+    "title" : "Faux exemple 15",
+    "description" : "Ceci est un exemple factice",
+    "content" :
+`SELECT *
+WHERE {
+  ?subject ?verb ?complement .
+}
+LIMIT 100`
+  },{
+    "title" : "Faux exemple 16",
+    "description" : "Ceci est un exemple factice",
+    "content" :
+`SELECT *
+WHERE {
+  ?subject ?verb ?complement .
+}
+LIMIT 100`
+  },{
+    "title" : "Faux exemple 17",
+    "description" : "Ceci est un exemple factice",
+    "content" :
+`SELECT *
+WHERE {
+  ?subject ?verb ?complement .
+}
+LIMIT 100`
+  },{
+    "title" : "Faux exemple 18",
+    "description" : "Ceci est un exemple factice",
+    "content" :
+`SELECT *
+WHERE {
+  ?subject ?verb ?complement .
+}
+LIMIT 100`
+  },{
+    "title" : "Faux exemple 19",
+    "description" : "Ceci est un exemple factice",
+    "content" :
+`SELECT *
+WHERE {
+  ?subject ?verb ?complement .
+}
+LIMIT 100`
+  },{
+    "title" : "Faux exemple 20",
+    "description" : "Ceci est un exemple factice",
+    "content" :
+`SELECT *
+WHERE {
+  ?subject ?verb ?complement .
+}
+LIMIT 100`
+  },{
+    "title" : "Faux exemple 1",
+    "description" : "Ceci est un exemple factice",
+    "content" :
+`SELECT *
+WHERE {
+  ?subject ?verb ?complement .
+}
+LIMIT 100`
+  },{
+    "title" : "Faux exemple 2",
+    "description" : "Ceci est un exemple factice",
+    "content" :
+`SELECT *
+WHERE {
+  ?subject ?verb ?complement .
+}
+LIMIT 100`
+  },{
+    "title" : "Faux exemple 3",
+    "description" : "Ceci est un exemple factice",
+    "content" :
+`SELECT *
+WHERE {
+  ?subject ?verb ?complement .
+}
+LIMIT 100`
+  },{
+    "title" : "Faux exemple 4",
+    "description" : "Ceci est un exemple factice",
+    "content" :
+`SELECT *
+WHERE {
+  ?subject ?verb ?complement .
+}
+LIMIT 100`
+  },{
+    "title" : "Faux exemple 5",
+    "description" : "Ceci est un exemple factice",
+    "content" :
+`SELECT *
+WHERE {
+  ?subject ?verb ?complement .
+}
+LIMIT 100`
+  },{
+    "title" : "Faux exemple 6",
+    "description" : "Ceci est un exemple factice",
+    "content" :
+`SELECT *
+WHERE {
+  ?subject ?verb ?complement .
+}
+LIMIT 100`
+  },{
+    "title" : "Faux exemple 7",
+    "description" : "Ceci est un exemple factice",
+    "content" :
+`SELECT *
+WHERE {
+  ?subject ?verb ?complement .
+}
+LIMIT 100`
+  },{
+    "title" : "Faux exemple 8",
+    "description" : "Ceci est un exemple factice",
+    "content" :
+`SELECT *
+WHERE {
+  ?subject ?verb ?complement .
+}
+LIMIT 100`
+  },{
+    "title" : "Faux exemple 9",
+    "description" : "Ceci est un exemple factice",
+    "content" :
+`SELECT *
+WHERE {
+  ?subject ?verb ?complement .
+}
+LIMIT 100`
+  },{
+    "title" : "Faux exemple 10",
+    "description" : "Ceci est un exemple factice",
+    "content" :
+`SELECT *
+WHERE {
+  ?subject ?verb ?complement .
+}
+LIMIT 100`
+  },{
+    "title" : "Faux exemple 11",
+    "description" : "Ceci est un exemple factice",
+    "content" :
+`SELECT *
+WHERE {
+  ?subject ?verb ?complement .
+}
+LIMIT 100`
+  },{
+    "title" : "Faux exemple 12",
+    "description" : "Ceci est un exemple factice",
+    "content" :
+`SELECT *
+WHERE {
+  ?subject ?verb ?complement .
+}
+LIMIT 100`
+  },{
+    "title" : "Faux exemple 13",
+    "description" : "Ceci est un exemple factice",
+    "content" :
+`SELECT *
+WHERE {
+  ?subject ?verb ?complement .
+}
+LIMIT 100`
+  },{
+    "title" : "Faux exemple 14",
+    "description" : "Ceci est un exemple factice",
+    "content" :
+`SELECT *
+WHERE {
+  ?subject ?verb ?complement .
+}
+LIMIT 100`
+  },{
+    "title" : "Faux exemple 15",
+    "description" : "Ceci est un exemple factice",
+    "content" :
+`SELECT *
+WHERE {
+  ?subject ?verb ?complement .
+}
+LIMIT 100`
+  },{
+    "title" : "Faux exemple 16",
+    "description" : "Ceci est un exemple factice",
+    "content" :
+`SELECT *
+WHERE {
+  ?subject ?verb ?complement .
+}
+LIMIT 100`
+  },{
+    "title" : "Faux exemple 17",
+    "description" : "Ceci est un exemple factice",
+    "content" :
+`SELECT *
+WHERE {
+  ?subject ?verb ?complement .
+}
+LIMIT 100`
+  },{
+    "title" : "Faux exemple 18",
+    "description" : "Ceci est un exemple factice",
+    "content" :
+`SELECT *
+WHERE {
+  ?subject ?verb ?complement .
+}
+LIMIT 100`
+  },{
+    "title" : "Faux exemple 19",
+    "description" : "Ceci est un exemple factice",
+    "content" :
+`SELECT *
+WHERE {
+  ?subject ?verb ?complement .
+}
+LIMIT 100`
+  },{
+    "title" : "Faux exemple 20",
+    "description" : "Ceci est un exemple factice",
+    "content" :
+`SELECT *
+WHERE {
+  ?subject ?verb ?complement .
+}
+LIMIT 100`
+  },{
+    "title" : "Faux exemple 1",
+    "description" : "Ceci est un exemple factice",
+    "content" :
+`SELECT *
+WHERE {
+  ?subject ?verb ?complement .
+}
+LIMIT 100`
+  },{
+    "title" : "Faux exemple 2",
+    "description" : "Ceci est un exemple factice",
+    "content" :
+`SELECT *
+WHERE {
+  ?subject ?verb ?complement .
+}
+LIMIT 100`
+  },{
+    "title" : "Faux exemple 3",
+    "description" : "Ceci est un exemple factice",
+    "content" :
+`SELECT *
+WHERE {
+  ?subject ?verb ?complement .
+}
+LIMIT 100`
+  },{
+    "title" : "Faux exemple 4",
+    "description" : "Ceci est un exemple factice",
+    "content" :
+`SELECT *
+WHERE {
+  ?subject ?verb ?complement .
+}
+LIMIT 100`
+  },{
+    "title" : "Faux exemple 5",
+    "description" : "Ceci est un exemple factice",
+    "content" :
+`SELECT *
+WHERE {
+  ?subject ?verb ?complement .
+}
+LIMIT 100`
+  },{
+    "title" : "Faux exemple 6",
+    "description" : "Ceci est un exemple factice",
+    "content" :
+`SELECT *
+WHERE {
+  ?subject ?verb ?complement .
+}
+LIMIT 100`
+  },{
+    "title" : "Faux exemple 7",
+    "description" : "Ceci est un exemple factice",
+    "content" :
+`SELECT *
+WHERE {
+  ?subject ?verb ?complement .
+}
+LIMIT 100`
+  },{
+    "title" : "Faux exemple 8",
+    "description" : "Ceci est un exemple factice",
+    "content" :
+`SELECT *
+WHERE {
+  ?subject ?verb ?complement .
+}
+LIMIT 100`
+  },{
+    "title" : "Faux exemple 9",
+    "description" : "Ceci est un exemple factice",
+    "content" :
+`SELECT *
+WHERE {
+  ?subject ?verb ?complement .
+}
+LIMIT 100`
+  },{
+    "title" : "Faux exemple 10",
+    "description" : "Ceci est un exemple factice",
+    "content" :
+`SELECT *
+WHERE {
+  ?subject ?verb ?complement .
+}
+LIMIT 100`
+  },{
+    "title" : "Faux exemple 11",
+    "description" : "Ceci est un exemple factice",
+    "content" :
+`SELECT *
+WHERE {
+  ?subject ?verb ?complement .
+}
+LIMIT 100`
+  },{
+    "title" : "Faux exemple 12",
+    "description" : "Ceci est un exemple factice",
+    "content" :
+`SELECT *
+WHERE {
+  ?subject ?verb ?complement .
+}
+LIMIT 100`
+  },{
+    "title" : "Faux exemple 13",
+    "description" : "Ceci est un exemple factice",
+    "content" :
+`SELECT *
+WHERE {
+  ?subject ?verb ?complement .
+}
+LIMIT 100`
+  },{
+    "title" : "Faux exemple 14",
+    "description" : "Ceci est un exemple factice",
+    "content" :
+`SELECT *
+WHERE {
+  ?subject ?verb ?complement .
+}
+LIMIT 100`
+  },{
+    "title" : "Faux exemple 15",
+    "description" : "Ceci est un exemple factice",
+    "content" :
+`SELECT *
+WHERE {
+  ?subject ?verb ?complement .
+}
+LIMIT 100`
+  },{
+    "title" : "Faux exemple 16",
+    "description" : "Ceci est un exemple factice",
+    "content" :
+`SELECT *
+WHERE {
+  ?subject ?verb ?complement .
+}
+LIMIT 100`
+  },{
+    "title" : "Faux exemple 17",
+    "description" : "Ceci est un exemple factice",
+    "content" :
+`SELECT *
+WHERE {
+  ?subject ?verb ?complement .
+}
+LIMIT 100`
+  },{
+    "title" : "Faux exemple 18",
+    "description" : "Ceci est un exemple factice",
+    "content" :
+`SELECT *
+WHERE {
+  ?subject ?verb ?complement .
+}
+LIMIT 100`
+  },{
+    "title" : "Faux exemple 19",
+    "description" : "Ceci est un exemple factice",
+    "content" :
+`SELECT *
+WHERE {
+  ?subject ?verb ?complement .
+}
+LIMIT 100`
+  },{
+    "title" : "Faux exemple 20",
+    "description" : "Ceci est un exemple factice",
+    "content" :
+`SELECT *
+WHERE {
+  ?subject ?verb ?complement .
+}
+LIMIT 100`
   }
 ];
 
 setTimeout(function(){
   YASGUI.YASQE.defaults.value = `SELECT *
-  WHERE {
-    ?subject ?verb ?complement .
-  }
-  LIMIT 100`;
+WHERE {
+  ?subject ?verb ?complement .
+}
+LIMIT 100`;
   var options = {
     catalogueEndpoints: [
       { endpoint: "https://data.istex.fr/sparql/", title: "ISTEX" },
@@ -405,7 +1488,7 @@ setTimeout(function(){
       hidePopup(examplesPopup);
     }
   });
-  
+
 }, 1000);
 
 function getSelectedExample(){
