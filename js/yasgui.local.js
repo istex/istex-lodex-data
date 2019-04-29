@@ -1474,12 +1474,23 @@ LIMIT 100`;
 
   
   //affichage des exemples lors du click sur le bouton "voir des exemples"
-  document.getElementById("showExamples").addEventListener('click', function(){ 
-    if(examplesPopup.classList.contains("showPopup")){
+  document.getElementById('showExamples').addEventListener('click', function(){ 
+    if(examplesPopup.classList.contains('showPopup')){
       hidePopup(examplesPopup);
     }else{
       showPopup(examplesPopup);
     }
+  });
+
+  //affichage de la selection de tags
+  document.querySelectorAll('.dropdown-toggle').forEach((e) =>{
+    e.addEventListener('click', function(){
+      if(e.parentNode.classList.contains('dropdown-open')){
+        e.parentNode.classList.remove('dropdown-open');
+      }else{
+        e.parentNode.classList.add('dropdown-open');
+      }
+    });
   });
 
   // detection du clavier
