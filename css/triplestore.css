@@ -141,7 +141,7 @@
 
 .popupBody{
     padding: 0px;
-    max-height: 50vh;
+    height: 50vh;
     overflow-y: scroll;
 }
 

@@ -1404,44 +1404,10 @@ LIMIT 100`;
   YASGUI.defaults.yasqe.sparql.endpoint = "https://data.istex.fr/sparql/";
   var yasgui = YASGUI(document.getElementById("YASGUI"), options);
   
-  //chargement des exemples depuis le fichier json
-  var examplesPopup = document.getElementById("popupExamples");
-  var examplesDiv = document.getElementById("examples"); 
-  var index = -1;
-  examplesData.forEach((jsonElement) => {
-    index++;
-    //recuperation et formattage des données
-    var title = jsonElement.title;
-    var description = jsonElement.description;
 
-    if(title === "---"){
-      var hr = document.createElement("hr");
-      examplesDiv.appendChild(hr);
-      return;
-    }
-    
-    //creation du html correspondant
-    var li = document.createElement("li");
-    li.classList.add("exampleItem");
-    li.setAttribute('title', description);
-    
-    var radioBt = document.createElement('input');
-    radioBt.setAttribute("type", "radio");
-    radioBt.setAttribute("name", "exampleRadioButton");
-    radioBt.setAttribute("value", index);
-    li.appendChild(radioBt);
-    li.appendChild(document.createTextNode(title));
-    
-    //evenement de click sur chaque exemple
-    li.addEventListener('click', function(){
-      li.childNodes[0].click();
-      document.getElementById('executeExample').removeAttribute("disabled");
-    });
-    
-    //ajout des exemples dans le DOM
-    examplesDiv.appendChild(li);
-  });
-  
+  var examplesPopup = document.getElementById("popupExamples");
+  //chargement des exemples depuis le fichier json
+  refreshList();
   
   //interraction avec la pop-up
   examplesPopup.addEventListener('click', function(event){
@@ -1493,6 +1459,11 @@ LIMIT 100`;
     });
   });
 
+  //recherche
+  document.getElementById('searchExamples').addEventListener('keyup', function(){
+    refreshList();
+  });
+
   // detection du clavier
   document.addEventListener('keyup', function(event){
     if(examplesPopup.classList.contains("showPopup") && event.code === "Escape"){
@@ -1501,6 +1472,60 @@ LIMIT 100`;
   });
 
 }, 1000);
+
+
+function refreshList(){
+  //chargement des exemples depuis le fichier json
+  var examplesDiv = document.getElementById("examples");
+
+  examplesDiv.innerHTML = "";
+
+  var index = -1;
+  examplesData.filter(shouldShowExample).forEach((jsonElement) => {
+    index++;
+    //recuperation et formattage des données
+    var title = jsonElement.title;
+    var description = jsonElement.description;
+
+    if(title === "---"){
+      var hr = document.createElement("hr");
+      examplesDiv.appendChild(hr);
+      return;
+    }
+    
+    //creation du html correspondant
+    var li = document.createElement("li");
+    li.classList.add("exampleItem");
+    li.setAttribute('title', description);
+    
+    var radioBt = document.createElement('input');
+    radioBt.setAttribute("type", "radio");
+    radioBt.setAttribute("name", "exampleRadioButton");
+    radioBt.setAttribute("value", index);
+    li.appendChild(radioBt);
+    li.appendChild(document.createTextNode(title));
+    
+    //evenement de click sur chaque exemple
+    li.addEventListener('click', function(){
+      li.childNodes[0].click();
+      document.getElementById('executeExample').removeAttribute("disabled");
+    });
+    
+    //ajout des exemples dans le DOM
+    examplesDiv.appendChild(li);
+  });
+}
+
+function shouldShowExample(elem){
+  var search = document.getElementById('searchExamples').value;
+
+  if(search === "") { return true; }
+
+  if(elem.title !== undefined && elem.title.includes(search, 0)) return true;
+  if(elem.description !== undefined && elem.description.includes(search, 0)) return true;
+
+  return false;
+}
 
 function getSelectedExample(){
   var radios = document.getElementsByName("exampleRadioButton");
