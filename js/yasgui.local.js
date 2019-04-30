@@ -1354,7 +1354,8 @@ LIMIT 100`
 WHERE {
   ?subject ?verb ?complement .
 }
-LIMIT 100`
+LIMIT 100`,
+"tags" : ["un premier tag"]
   },{
     "title" : "Faux exemple 19",
     "description" : "Ceci est un exemple factice",
@@ -1363,7 +1364,8 @@ LIMIT 100`
 WHERE {
   ?subject ?verb ?complement .
 }
-LIMIT 100`
+LIMIT 100`,
+  "tags" : ["tag en double", "tag test 0"]
   },{
     "title" : "Faux exemple 20",
     "description" : "Ceci est un exemple factice",
@@ -1372,9 +1374,12 @@ LIMIT 100`
 WHERE {
   ?subject ?verb ?complement .
 }
-LIMIT 100`
+LIMIT 100`,
+  "tags" : ["tag test 1", "tag test 2", "tag en double"]
   }
 ];
+
+var tags = Array();
 
 setTimeout(function(){
   YASGUI.YASQE.defaults.value = `SELECT *
@@ -1406,9 +1411,30 @@ LIMIT 100`;
   
 
   var examplesPopup = document.getElementById("popupExamples");
+  
+  //chargement des tags
+  var tagsListHtml = document.getElementById("tagsList");
+  examplesData.forEach(function(ex){
+    if(ex.tags !== undefined){
+      ex.tags.forEach(function(tag){
+        if(!tags.includes(tag)){
+          tags.push(tag);
+          var tagHtml = document.createElement('div');
+          var tagCheckbox = document.createElement('input');
+          tagCheckbox.classList.add('tagCheckbox');
+          tagCheckbox.setAttribute('type', 'checkbox');
+          tagHtml.appendChild(tagCheckbox);
+          var tagText = document.createTextNode(tag);
+          tagHtml.appendChild(tagText);
+          tagsListHtml.appendChild(tagHtml);
+        }
+      });
+    }
+  });
+
   //chargement des exemples depuis le fichier json
   refreshList();
-  
+
   //interraction avec la pop-up
   examplesPopup.addEventListener('click', function(event){
     if(examplesPopup !== event.target) return;
