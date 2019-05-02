@@ -1422,11 +1422,14 @@ LIMIT 100`;
           var tagHtml = document.createElement('div');
           var tagCheckbox = document.createElement('input');
           tagCheckbox.classList.add('tagCheckbox');
+          tagCheckbox.setAttribute('name', 'tagCheckbox');
           tagCheckbox.setAttribute('type', 'checkbox');
+          tagCheckbox.setAttribute('value', tag);
           tagHtml.appendChild(tagCheckbox);
           var tagText = document.createTextNode(tag);
           tagHtml.appendChild(tagText);
           tagsListHtml.appendChild(tagHtml);
+          tagCheckbox.addEventListener('change', refreshList);
         }
       });
     }
@@ -1544,24 +1547,51 @@ function refreshList(){
 
 function shouldShowExample(elem){
   var search = document.getElementById('searchExamples').value;
+  var tagsSelected = getSelectedTags();
+  
+  //pas de filtre
+  if(tagsSelected.length === 0 && search === "") { return true; }
 
-  if(search === "") { return true; }
-
-  if(elem.title !== undefined && elem.title.includes(search, 0)) return true;
-  if(elem.description !== undefined && elem.description.includes(search, 0)) return true;
-
+  //filtre uniquement sur titre et description
+  if(tagsSelected.length === 0) {
+    if(elem.title !== undefined && elem.title.includes(search, 0)) return true;
+    if(elem.description !== undefined && elem.description.includes(search, 0)) return true; 
+  }
+  
+  //filtre si tags selectionnes
+  if(elem.tags === undefined)  { return false; }
+  for(var i = 0; i < elem.tags.length; i++){
+    if(tagsSelected.includes(elem.tags[i])) { 
+      if(search === "") { return true; }
+      if(elem.title !== undefined && elem.title.includes(search, 0)) return true;
+      if(elem.description !== undefined && elem.description.includes(search, 0)) return true; 
+    }
+  }
+  
   return false;
 }
 
 function getSelectedExample(){
-  var radios = document.getElementsByName("exampleRadioButton");
-  for(var i = 0; i < radios.length; i++){
-    if(radios[i].checked){
+  var radios = document.getElementsByName('exampleRadioButton');
+  for(var i = 0; i < radios.length; i++) {
+    if(radios[i].checked) {
       return radios[i].value;
     }
   }
   
   return -1;
+}
+
+function getSelectedTags(){
+  var res = Array();
+  var checkboxs = document.getElementsByName('tagCheckbox');
+  for(var i = 0; i < checkboxs.length; i++){
+    if(checkboxs[i].checked) {
+      res.push(checkboxs[i].value);
+    }
+  }
+  
+  return res;
 }
 
 function showPopup(popup){
