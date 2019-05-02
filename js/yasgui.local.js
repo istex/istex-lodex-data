@@ -1562,16 +1562,10 @@ function shouldShowExample(elem, search, tagsSelected){
 
   //fonction de vérification de recherche
   var contains = function(text, search){
-    var textNormalized = text.normalize('NFD').replace(/[^\w\s]|_/g, "").replace(/\s+/g, " ").toLowerCase();
-    var searchNormalized = search.normalize('NFD').replace(/[^\w\s]|_/g, "").replace(/\s+/g, " ").toLowerCase();
-    console.log(textNormalized);
-    console.log(searchNormalized);
-    console.log("________________________");
-
+    var textNormalized = text.normalize('NFD').replace(/[^\w\s]|_/g, "").replace(/\s+/g, "").replace(' ', '').toLowerCase();
+    var searchNormalized = search.normalize('NFD').replace(/[^\w\s]|_/g, "").replace(/\s+/g, "").replace(' ', '').toLowerCase();
     return textNormalized.includes(searchNormalized);
   }
-
-  contains("Propriétés d'un graph", "proprietes d'un graph");
   
   //filtre uniquement sur titre et description
   if(tagsSelected.length === 0) {
