@@ -1379,14 +1379,18 @@ LIMIT 100`,
   }
 ];
 
+//creation des variables utiles
 var tags = Array();
+examplesData.forEach(function(example, index){
+  example.id = index;
+});
 
 setTimeout(function(){
   YASGUI.YASQE.defaults.value = `SELECT *
-WHERE {
-  ?subject ?verb ?complement .
-}
-LIMIT 100`;
+  WHERE {
+    ?subject ?verb ?complement .
+  }
+  LIMIT 100`;
   var options = {
     catalogueEndpoints: [
       { endpoint: "https://data.istex.fr/sparql/", title: "ISTEX" },
@@ -1409,7 +1413,7 @@ LIMIT 100`;
   YASGUI.defaults.yasqe.sparql.endpoint = "https://data.istex.fr/sparql/";
   var yasgui = YASGUI(document.getElementById("YASGUI"), options);
   
-
+  
   var examplesPopup = document.getElementById("popupExamples");
   
   //chargement des tags
@@ -1434,16 +1438,16 @@ LIMIT 100`;
       });
     }
   });
-
-  //chargement des exemples depuis le fichier json
+  
+  //chargement des exemples depuis le fichier json en appliquant les filtres
   refreshList();
-
+  
   //interraction avec la pop-up
   examplesPopup.addEventListener('click', function(event){
     if(examplesPopup !== event.target) return;
     hidePopup(examplesPopup);
   });
-
+  
   var executeBt = document.getElementById('executeExample');
   executeBt.addEventListener('click', function(){
     var selected = examplesData[getSelectedExample()];
@@ -1466,7 +1470,7 @@ LIMIT 100`;
   closeBt.addEventListener('click', function(){
     hidePopup(closeBt.closest('.popupContainer'));
   });
-
+  
   
   //affichage des exemples lors du click sur le bouton "voir des exemples"
   document.getElementById('showExamples').addEventListener('click', function(){ 
@@ -1476,7 +1480,7 @@ LIMIT 100`;
       showPopup(examplesPopup);
     }
   });
-
+  
   //affichage de la selection de tags
   document.querySelectorAll('.dropdown-toggle').forEach((e) =>{
     e.addEventListener('click', function(){
@@ -1487,43 +1491,40 @@ LIMIT 100`;
       }
     });
   });
-
+  
   //recherche
   document.getElementById('searchExamples').addEventListener('keyup', function(){
     refreshList();
   });
-
+  
   // detection du clavier
   document.addEventListener('keyup', function(event){
     if(examplesPopup.classList.contains("showPopup") && event.code === "Escape"){
       hidePopup(examplesPopup);
     }
   });
-
+  
 }, 1000);
 
 
 function refreshList(){
-  //chargement des exemples depuis le fichier json
   var examplesDiv = document.getElementById("examples");
-
+  
   examplesDiv.innerHTML = "";
-
-  var index = -1;
-
+  
   var search = document.getElementById('searchExamples').value;
   var tagsSelected = getSelectedTags();
-
+  
   examplesData
-  .filter(function(e){
-    return shouldShowExample(e, search, tagsSelected)
+  .filter(function(example){
+    return shouldShowExample(example, search, tagsSelected)
   })
-  .forEach((jsonElement) => {
-    index++;
+  .forEach((example) => {
     //recuperation et formattage des données
-    var title = jsonElement.title;
-    var description = jsonElement.description;
-
+    var id = example.id;
+    var title = example.title;
+    var description = example.description;
+    
     if(title === "---"){
       var hr = document.createElement("hr");
       examplesDiv.appendChild(hr);
@@ -1538,7 +1539,7 @@ function refreshList(){
     var radioBt = document.createElement('input');
     radioBt.setAttribute("type", "radio");
     radioBt.setAttribute("name", "exampleRadioButton");
-    radioBt.setAttribute("value", index);
+    radioBt.setAttribute("value", id);
     li.appendChild(radioBt);
     li.appendChild(document.createTextNode(title));
     
@@ -1556,7 +1557,7 @@ function refreshList(){
 function shouldShowExample(elem, search, tagsSelected){  
   //pas de filtre
   if(tagsSelected.length === 0 && search === "") { return true; }
-
+  
   //filtre uniquement sur titre et description
   if(tagsSelected.length === 0) {
     if(elem.title !== undefined && elem.title.includes(search, 0)) return true;
