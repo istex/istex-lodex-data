@@ -1454,7 +1454,7 @@ setTimeout(function(){
     if(selected === undefined) return;    
     var newTab = yasgui.addTab();
     newTab.rename(selected.title);
-    var query = selected.content;
+    var query = "# Description : \n# " + selected.description + "\n\n" + selected.content;
     newTab.setQuery(query);
     var endpoint = selected.endpoint;
     if(endpoint !== undefined) {
