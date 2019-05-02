@@ -1509,14 +1509,16 @@ function refreshList(){
 
   examplesDiv.innerHTML = "";
 
+  var index = -1;
+
   var search = document.getElementById('searchExamples').value;
   var tagsSelected = getSelectedTags();
-  var filter = function(elem) {
-    return shouldShowExample(elem, search, tagsSelected);
-  }
 
-  var index = -1;
-  examplesData.filter(filter).forEach((jsonElement) => {
+  examplesData
+  .filter(function(e){
+    return shouldShowExample(e, search, tagsSelected)
+  })
+  .forEach((jsonElement) => {
     index++;
     //recuperation et formattage des données
     var title = jsonElement.title;
@@ -1551,8 +1553,7 @@ function refreshList(){
   });
 }
 
-function shouldShowExample(elem, tagsSelected, search){  
-
+function shouldShowExample(elem, search, tagsSelected){  
   //pas de filtre
   if(tagsSelected.length === 0 && search === "") { return true; }
 
