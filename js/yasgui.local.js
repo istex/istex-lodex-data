@@ -1509,8 +1509,14 @@ function refreshList(){
 
   examplesDiv.innerHTML = "";
 
+  var search = document.getElementById('searchExamples').value;
+  var tagsSelected = getSelectedTags();
+  var filter = function(elem) {
+    return shouldShowExample(elem, search, tagsSelected);
+  }
+
   var index = -1;
-  examplesData.filter(shouldShowExample).forEach((jsonElement) => {
+  examplesData.filter(filter).forEach((jsonElement) => {
     index++;
     //recuperation et formattage des données
     var title = jsonElement.title;
@@ -1545,10 +1551,8 @@ function refreshList(){
   });
 }
 
-function shouldShowExample(elem){
-  var search = document.getElementById('searchExamples').value;
-  var tagsSelected = getSelectedTags();
-  
+function shouldShowExample(elem, tagsSelected, search){  
+
   //pas de filtre
   if(tagsSelected.length === 0 && search === "") { return true; }
 
