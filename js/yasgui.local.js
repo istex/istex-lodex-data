@@ -1555,13 +1555,28 @@ function refreshList(){
 }
 
 function shouldShowExample(elem, search, tagsSelected){  
+
   //pas de filtre
   if(tagsSelected.length === 0 && search === "") { return true; }
+
+
+  //fonction de vérification de recherche
+  var contains = function(text, search){
+    var textNormalized = text.normalize('NFD').replace(/[^\w\s]|_/g, "").replace(/\s+/g, " ").toLowerCase();
+    var searchNormalized = search.normalize('NFD').replace(/[^\w\s]|_/g, "").replace(/\s+/g, " ").toLowerCase();
+    console.log(textNormalized);
+    console.log(searchNormalized);
+    console.log("________________________");
+
+    return textNormalized.includes(searchNormalized);
+  }
+
+  contains("Propriétés d'un graph", "proprietes d'un graph");
   
   //filtre uniquement sur titre et description
   if(tagsSelected.length === 0) {
-    if(elem.title !== undefined && elem.title.includes(search, 0)) return true;
-    if(elem.description !== undefined && elem.description.includes(search, 0)) return true; 
+    if(elem.title !== undefined && contains(elem.title, search)) return true;
+    if(elem.description !== undefined && contains(elem.description, search)) return true; 
   }
   
   //filtre si tags selectionnes
@@ -1569,8 +1584,8 @@ function shouldShowExample(elem, search, tagsSelected){
   for(var i = 0; i < elem.tags.length; i++){
     if(tagsSelected.includes(elem.tags[i])) { 
       if(search === "") { return true; }
-      if(elem.title !== undefined && elem.title.includes(search, 0)) return true;
-      if(elem.description !== undefined && elem.description.includes(search, 0)) return true; 
+      if(elem.title !== undefined && contains(elem.title, search)) return true;
+      if(elem.description !== undefined && contains(elem.description, search)) return true; 
     }
   }
   
