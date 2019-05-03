@@ -1534,15 +1534,23 @@ function refreshList(){
     //creation du html correspondant
     var li = document.createElement("li");
     li.classList.add("exampleItem");
-    li.setAttribute('title', description);
     
     var radioBt = document.createElement('input');
     radioBt.setAttribute("type", "radio");
     radioBt.setAttribute("name", "exampleRadioButton");
     radioBt.setAttribute("value", id);
     li.appendChild(radioBt);
-    li.appendChild(document.createTextNode(title));
+
+    var titleDiv = document.createElement('h4');
+    titleDiv.classList.add('title')
+    titleDiv.appendChild(document.createTextNode(title));
+    li.appendChild(titleDiv);
     
+    var descDiv = document.createElement('div');
+    descDiv.classList.add('description');
+    descDiv.appendChild(document.createTextNode(description));
+    li.appendChild(descDiv);
+
     //evenement de click sur chaque exemple
     li.addEventListener('click', function(){
       li.childNodes[0].click();

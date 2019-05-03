@@ -165,6 +165,7 @@
     transition: background-color 0.3s;
     padding: 4px 20px;
     cursor: pointer;
+    margin-bottom: 10px;
 }
 
 .exampleItem:first-child {
@@ -182,6 +183,19 @@
 .exampleItem input[type="radio"]{
     margin-right : 10px;
     vertical-align: top;
+}
+
+.exampleItem .title {
+    display: inline-block;
+    margin: 0;
+}
+
+.exampleItem .description {
+    font-style: italic;
+    font-size: 13px;
+    margin-left: 30px;
+    margin-right: 10px;
+    padding-top: 2px;
 }
 
 #examples hr{
