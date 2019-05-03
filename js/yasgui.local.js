@@ -1426,15 +1426,20 @@ setTimeout(function(){
       ex.tags.forEach(function(tag){
         if(!tags.includes(tag)){
           tags.push(tag);
+          var tagId = tags.length-1;
+
           var tagHtml = document.createElement('div');
           var tagCheckbox = document.createElement('input');
           tagCheckbox.classList.add('tagCheckbox');
+          tagCheckbox.id = 'tag_' + tagId;
           tagCheckbox.setAttribute('name', 'tagCheckbox');
           tagCheckbox.setAttribute('type', 'checkbox');
           tagCheckbox.setAttribute('value', tag);
           tagHtml.appendChild(tagCheckbox);
-          var tagText = document.createTextNode(tag);
-          tagHtml.appendChild(tagText);
+          var tagLabel = document.createElement('label');
+          tagLabel.appendChild(document.createTextNode(tag));
+          tagLabel.setAttribute('for', 'tag_' + tagId);
+          tagHtml.appendChild(tagLabel);
           tagsListHtml.appendChild(tagHtml);
           tagCheckbox.addEventListener('change', refreshList);
         }
@@ -1444,12 +1449,6 @@ setTimeout(function(){
   
   //chargement des exemples depuis le fichier json en appliquant les filtres
   refreshList();
-  
-  //interraction avec la pop-up
-  examplesPopup.addEventListener('click', function(event){
-    if(examplesPopup !== event.target) return;
-    hidePopup(examplesPopup);
-  });
   
   var executeBt = document.getElementById('executeExample');
   executeBt.addEventListener('click', function(){
@@ -1487,9 +1486,9 @@ setTimeout(function(){
   //affichage de la selection de tags
   document.querySelectorAll('.dropdown-toggle').forEach((e) =>{
     e.addEventListener('click', function(){
-      if(e.parentNode.classList.contains('dropdown-open')){
-        e.parentNode.classList.remove('dropdown-open');
-      }else{
+      var stateOpen = e.parentNode.classList.contains('dropdown-open');
+      closeDropdowns();
+      if(!stateOpen){
         e.parentNode.classList.add('dropdown-open');
       }
     });
@@ -1502,8 +1501,28 @@ setTimeout(function(){
   
   // detection du clavier
   document.addEventListener('keyup', function(event){
-    if(examplesPopup.classList.contains("showPopup") && event.code === "Escape"){
+    //appui sur la touche echap
+    if(event.code === "Escape"){
+      //fermeture de la selection des tags
+      if(closeDropdowns()) { return; }
+      //fermeture de la pop-up
+      if(examplesPopup.classList.contains("showPopup")){
+        hidePopup(examplesPopup);
+        return;
+      }
+    }
+  });
+  
+  //interractions de fermeture au clic n imorte ou sur la page
+  document.addEventListener('click', function(event){
+    //fermetures des dropdowns
+    if(event.target.closest('.dropdown-open') === null && closeDropdowns()) return null;
+    
+    //feremture de la popup
+    if(event.target.closest('.popupContainer') !== null) {
+      if(examplesPopup !== event.target) return;
       hidePopup(examplesPopup);
+      return;
     }
   });
   
@@ -1643,4 +1662,15 @@ function showPopup(popup){
 function hidePopup(popup){
   popup.classList.remove('showPopup');
   popup.classList.add('hidePopup');
+}
+
+function closeDropdowns(){
+  var openedDropdowns = document.querySelectorAll('.dropdown-open');
+  if(openedDropdowns.length > 0){
+    openedDropdowns.forEach((dropdown) => {
+      dropdown.classList.remove('dropdown-open');
+    });
+    return true;
+  }
+  return false;
 }
