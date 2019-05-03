@@ -1327,7 +1327,8 @@ LIMIT 100`
 WHERE {
   ?subject ?verb ?complement .
 }
-LIMIT 100`
+LIMIT 100`,
+  "tags" : ["exemple factice", "test"]
   },{
     "title" : "Faux exemple 16",
     "description" : "Ceci est un exemple factice",
@@ -1336,7 +1337,8 @@ LIMIT 100`
 WHERE {
   ?subject ?verb ?complement .
 }
-LIMIT 100`
+LIMIT 100`,
+  "tags" : ["test", "tag"]
   },{
     "title" : "Faux exemple 17",
     "description" : "Ceci est un exemple factice",
@@ -1345,7 +1347,8 @@ LIMIT 100`
 WHERE {
   ?subject ?verb ?complement .
 }
-LIMIT 100`
+LIMIT 100`,
+  "tags" : ["tag factice", "exemple factice"]
   },{
     "title" : "Faux exemple 18",
     "description" : "Ceci est un exemple factice",
@@ -1524,6 +1527,7 @@ function refreshList(){
     var id = example.id;
     var title = example.title;
     var description = example.description;
+    var tags = example.tags;
     
     if(title === "---"){
       var hr = document.createElement("hr");
@@ -1550,6 +1554,20 @@ function refreshList(){
     descDiv.classList.add('description');
     descDiv.appendChild(document.createTextNode(description));
     li.appendChild(descDiv);
+
+
+    if(tags !== undefined){
+      var tagsDiv = document.createElement('div');
+      tagsDiv.classList.add('tags');
+      tags.forEach(function(tag){
+        var tagBadge = document.createElement('span');
+        tagBadge.classList.add('tag');
+        tagBadge.classList.add('badge');
+        tagBadge.appendChild(document.createTextNode(tag));
+        tagsDiv.appendChild(tagBadge);
+      });
+      li.appendChild(tagsDiv);
+    }
 
     //evenement de click sur chaque exemple
     li.addEventListener('click', function(){

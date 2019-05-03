@@ -181,7 +181,7 @@
 }
 
 .exampleItem input[type="radio"]{
-    margin-right : 10px;
+    margin-right: 10px;
     vertical-align: top;
 }
 
@@ -198,8 +198,22 @@
     padding-top: 2px;
 }
 
+.exampleItem .tags {
+    margin-left: 30px;
+}
+
+.exampleItem .tags .tag{
+    font-style: oblique;
+    font-size: 11px;
+    color: #fff;
+    background-color: #458CA5;
+    border-radius: 5px;
+    margin-right: 5px;
+}
+
 #examples hr{
     border-color: #CCC;
     background-color: #CCC;
     color: #CCC;
+    margin: 30px 25px;
 }
