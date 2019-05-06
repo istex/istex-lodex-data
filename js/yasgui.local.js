@@ -1382,7 +1382,7 @@ LIMIT 100`,
   }
 ];
 
-//creation des variables utiles
+//création des variables
 var tags = Array();
 examplesData.forEach(function(example, index){
   example.id = index;
@@ -1415,8 +1415,7 @@ setTimeout(function(){
   YASGUI.defaults.catalogueEndpoints = options.catalogueEndpoints;
   YASGUI.defaults.yasqe.sparql.endpoint = "https://data.istex.fr/sparql/";
   var yasgui = YASGUI(document.getElementById("YASGUI"), options);
-  
-  
+   
   var examplesPopup = document.getElementById("popupExamples");
   
   //chargement des tags
@@ -1456,7 +1455,7 @@ setTimeout(function(){
     if(selected === undefined) return;    
     var newTab = yasgui.addTab();
     newTab.rename(selected.title);
-    var query = "# Description : \n# " + selected.description + "\n\n" + selected.content;
+    var query = "# " + selected.description + "\n\n" + selected.content;
     newTab.setQuery(query);
     var endpoint = selected.endpoint;
     if(endpoint !== undefined) {
@@ -1483,7 +1482,7 @@ setTimeout(function(){
     }
   });
   
-  //affichage de la selection de tags
+  //affichage de la sélection de tags
   document.querySelectorAll('.dropdown-toggle').forEach((e) =>{
     e.addEventListener('click', function(){
       var stateOpen = e.parentNode.classList.contains('dropdown-open');
@@ -1499,11 +1498,11 @@ setTimeout(function(){
     refreshList();
   });
   
-  // detection du clavier
+  // détection du clavier
   document.addEventListener('keyup', function(event){
-    //appui sur la touche echap
+    //appui sur la touche échap
     if(event.code === "Escape"){
-      //fermeture de la selection des tags
+      //fermeture de la sélection des tags
       if(closeDropdowns()) { return; }
       //fermeture de la pop-up
       if(examplesPopup.classList.contains("showPopup")){
@@ -1513,12 +1512,12 @@ setTimeout(function(){
     }
   });
   
-  //interractions de fermeture au clic n imorte ou sur la page
+  //interactions de fermeture au clic n'importe où sur la page
   document.addEventListener('click', function(event){
     //fermetures des dropdowns
     if(event.target.closest('.dropdown-open') === null && closeDropdowns()) return null;
     
-    //feremture de la popup
+    //fermeture de la popup
     if(event.target.closest('.popupContainer') !== null) {
       if(examplesPopup !== event.target) return;
       hidePopup(examplesPopup);
@@ -1535,26 +1534,24 @@ function refreshList(){
   examplesDiv.innerHTML = "";
   
   var search = document.getElementById('searchExamples').value;
-  var tagsSelected = getSelectedTags();
+  var selectedTags = getSelectedTags();
   
   examplesData
   .filter(function(example){
-    return shouldShowExample(example, search, tagsSelected)
+    return shouldShowExample(example, search, selectedTags)
   })
   .forEach((example) => {
-    //recuperation et formattage des données
-    var id = example.id;
-    var title = example.title;
-    var description = example.description;
-    var tags = example.tags;
-    
+    //récupération et formatage des données
+
+    const {id, title, description, tags} = example;
+
     if(title === "---"){
       var hr = document.createElement("hr");
       examplesDiv.appendChild(hr);
       return;
     }
     
-    //creation du html correspondant
+    //création du html correspondant
     var li = document.createElement("li");
     li.classList.add("exampleItem");
     
@@ -1564,10 +1561,10 @@ function refreshList(){
     radioBt.setAttribute("value", id);
     li.appendChild(radioBt);
 
-    var titleDiv = document.createElement('h4');
-    titleDiv.classList.add('title')
-    titleDiv.appendChild(document.createTextNode(title));
-    li.appendChild(titleDiv);
+    var titleElement = document.createElement('h4');
+    titleElement.classList.add('title')
+    titleElement.appendChild(document.createTextNode(title));
+    li.appendChild(titleElement);
     
     var descDiv = document.createElement('div');
     descDiv.classList.add('description');
@@ -1588,7 +1585,7 @@ function refreshList(){
       li.appendChild(tagsDiv);
     }
 
-    //evenement de click sur chaque exemple
+    //événement de clic sur chaque exemple
     li.addEventListener('click', function(){
       li.childNodes[0].click();
       document.getElementById('executeExample').removeAttribute("disabled");
@@ -1599,29 +1596,32 @@ function refreshList(){
   });
 }
 
-function shouldShowExample(elem, search, tagsSelected){  
+function shouldShowExample(elem, search, selectedTags){  
 
   //pas de filtre
-  if(tagsSelected.length === 0 && search === "") { return true; }
+  if(selectedTags.length === 0 && search === "") { return true; }
 
 
   //fonction de vérification de recherche
+  // soluttion trouvées à partir de https://stackoverflow.com/questions/990904/remove-accents-diacritics-in-a-string-in-javascript
   var contains = function(text, search){
-    var textNormalized = text.normalize('NFD').replace(/[^\w\s]|_/g, "").replace(/\s+/g, "").replace(' ', '').toLowerCase();
-    var searchNormalized = search.normalize('NFD').replace(/[^\w\s]|_/g, "").replace(/\s+/g, "").replace(' ', '').toLowerCase();
+    var textNormalized = text.normalize('NFD').replace(/[^\w\s]|_/g, "").replace(/\s+/g, "").toLowerCase();
+    var searchNormalized = search.normalize('NFD').replace(/[^\w\s]|_/g, "").replace(/\s+/g, "").toLowerCase();
+
     return textNormalized.includes(searchNormalized);
   }
   
   //filtre uniquement sur titre et description
-  if(tagsSelected.length === 0) {
+  if(selectedTags.length === 0) {
     if(elem.title !== undefined && contains(elem.title, search)) return true;
     if(elem.description !== undefined && contains(elem.description, search)) return true; 
   }
   
-  //filtre si tags selectionnes
+  //filtre si des tags sont selectionnés
   if(elem.tags === undefined)  { return false; }
+  
   for(var i = 0; i < elem.tags.length; i++){
-    if(tagsSelected.includes(elem.tags[i])) { 
+    if(selectedTags.includes(elem.tags[i])) { 
       if(search === "") { return true; }
       if(elem.title !== undefined && contains(elem.title, search)) return true;
       if(elem.description !== undefined && contains(elem.description, search)) return true; 
@@ -1643,15 +1643,8 @@ function getSelectedExample(){
 }
 
 function getSelectedTags(){
-  var res = Array();
-  var checkboxs = document.getElementsByName('tagCheckbox');
-  for(var i = 0; i < checkboxs.length; i++){
-    if(checkboxs[i].checked) {
-      res.push(checkboxs[i].value);
-    }
-  }
-  
-  return res;
+  var checkboxes = document.getElementsByName('tagCheckbox');
+  return Array.from(checkboxes).filter(checkbox => checkbox.checked).map(checkbox => checkbox.value);
 }
 
 function showPopup(popup){
