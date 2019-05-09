@@ -1,7 +1,8 @@
 #buttons {
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: center;
+    transform: translateX(-45px);
 }
 
 .btn, .btn:focus {
@@ -221,4 +222,14 @@
     background-color: #CCC;
     color: #CCC;
     margin: 30px 25px;
+}
+
+#popupDiagram {
+    cursor: zoom-out;
+}
+
+#diagramImg {
+    max-width: 100%;
+    max-height: 100%;
+    padding: 5px;
 }

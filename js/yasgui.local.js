@@ -110,13 +110,15 @@ function initExamples(examplesInJson, yasgui) {
   });
   
   
-  //affichage des exemples lors du click sur le bouton "voir des exemples"
+  //affichage des exemples lors du click sur le bouton "executer des exemples"
   document.getElementById('showExamples').addEventListener('click', function(){ 
-    if(examplesPopup.classList.contains('showPopup')){
-      hidePopup(examplesPopup);
-    }else{
       showPopup(examplesPopup);
-    }
+  });
+
+  //affichage du diagramme lors du click sur le bouton "structure des données"
+  const diagramPopup = document.getElementById('popupDiagram');
+  document.getElementById('showDiagram').addEventListener('click', function(){ 
+      showPopup(diagramPopup);
   });
   
   //affichage de la sélection de tags
@@ -155,9 +157,10 @@ function initExamples(examplesInJson, yasgui) {
     if(event.target.closest('.dropdown-open') === null && closeDropdowns()) return null;
     
     //fermeture de la popup
-    if(event.target.closest('.popupContainer') !== null) {
-      if(examplesPopup !== event.target) return;
-      hidePopup(examplesPopup);
+    const popupContainer = event.target.closest('.popupContainer');
+    if(popupContainer !== null) {
+      if(event.target.closest('.popup') !== null) return;
+      hidePopup(popupContainer);
       return;
     }
   }); 
