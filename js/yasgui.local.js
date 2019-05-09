@@ -246,23 +246,6 @@ function shouldShowExample(elem, search, selectedTags){
     return textNormalized.includes(searchNormalized);
   }
   
-  // if(selectedTags.length === 0) {
-  //   if(elem.title !== undefined && contains(elem.title, search)) return true;
-  //   if(elem.description !== undefined && contains(elem.description, search)) return true; 
-  // }
-  
-  // if(elem.tags === undefined)  { return false; }
-  
-  // for(var i = 0; i < elem.tags.length; i++){
-  //   if(selectedTags.includes(elem.tags[i])) { 
-  //     if(search === "") { return true; }
-  //     if(elem.title !== undefined && contains(elem.title, search)) return true;
-  //     if(elem.description !== undefined && contains(elem.description, search)) return true; 
-  //   }
-  // }
-  
-  // return false;
-  
   const matchTitle = elem.title !== undefined && contains(elem.title, search);
   const matchDescription = elem.description !== undefined && contains(elem.description, search);
   const matchTitleOrDescription = matchTitle || matchDescription;
@@ -271,8 +254,8 @@ function shouldShowExample(elem, search, selectedTags){
   if (selectedTags.length === 0 && matchTitleOrDescription) { return true; }
   
   //filtre si des tags sont selectionnés
-  const selectedTag = t => selectedTags.includes(t);
-  return elem.tags !== undefined && (search === '' || matchTitleOrDescription) && elem.tags.some(selectedTag);
+  const isSelectedTag = t => selectedTags.includes(t);
+  return elem.tags !== undefined && (search === '' || matchTitleOrDescription) && elem.tags.some(isSelectedTag);
 }
 
 function getSelectedExample(){
