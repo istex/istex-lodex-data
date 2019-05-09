@@ -4,10 +4,10 @@ let tags;
 
 setTimeout(function(){
   YASGUI.YASQE.defaults.value = `SELECT *
-  WHERE {
-    ?subject ?verb ?complement .
-  }
-  LIMIT 100`;
+WHERE {
+  ?subject ?verb ?complement .
+}
+LIMIT 100`;
   var options = {
     catalogueEndpoints: [
       { endpoint: "https://data.istex.fr/sparql/", title: "ISTEX" },
@@ -29,7 +29,7 @@ setTimeout(function(){
   YASGUI.defaults.catalogueEndpoints = options.catalogueEndpoints;
   YASGUI.defaults.yasqe.sparql.endpoint = "https://data.istex.fr/sparql/";
   var yasgui = YASGUI(document.getElementById("YASGUI"), options);
-
+  
   fetch('/triplestore/sparql/examples.json').then(response => {
     response.json().then(function(elems){initExamples(elems, yasgui)});
   });
@@ -43,7 +43,13 @@ function initExamples(examplesInJson, yasgui) {
   examplesData.forEach(function(example, index){
     example.id = index;
     if(example.content !== undefined){
-      example.content = example.content.join('\n');
+      const content = getUrlArgs(example.content);
+      if(content.query !== undefined){
+        example.query = content.query;
+      }
+      if(content.endpoint !== undefined){
+        example.endpoint = content.endpoint;
+      }
     }
   });
   
@@ -86,7 +92,7 @@ function initExamples(examplesInJson, yasgui) {
     if(selected === undefined) return;    
     var newTab = yasgui.addTab();
     newTab.rename(selected.title);
-    var query = "# " + selected.description + "\n\n" + selected.content;
+    var query = "# " + selected.description + "\n\n" + selected.query;
     newTab.setQuery(query);
     var endpoint = selected.endpoint;
     if(endpoint !== undefined) {
@@ -304,4 +310,11 @@ function closeDropdowns(){
     return true;
   }
   return false;
+}
+
+function getUrlArgs(url){
+  const reduced = url.substr(url.indexOf('#') + 1);
+  const keysValues = reduced.split('&').map((elem) => elem.split('='));
+  const cleaned = keysValues.map((keyValue) => keyValue.map(elem => decodeURIComponent(elem.replace(/\+/g, ' '))));
+  return Object.fromEntries(cleaned);
 }

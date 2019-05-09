@@ -1,211 +1,54 @@
 [
   {
     "title" : "Liste de dix triplets",
-    "content" : [
-"SELECT * # Affiche toutes les variables",
-"WHERE {",
-"  # Un motif de triplet, ou chaque partie est une variable",
-"  ?subject ?verb ?complement .",
-"}",
-"OFFSET 1000 # Démarre au millième triplet",
-"LIMIT 10 # Ne prend que 10 triplets"
-    ],
+    "content" : "http://192.168.31.146:49452/triplestore/sparql/#query=SELECT+*+%23+Affiche+toutes+les+variables%0AWHERE+%7B%0A++%23+Un+motif+de+triplet%2C+ou+chaque+partie+est+une+variable%0A++%3Fsubject+%3Fverb+%3Fcomplement+.%0A%7D%0AOFFSET+1000+%23+D%C3%A9marre+au+milli%C3%A8me+triplet%0ALIMIT+10+%23+Ne+prend+que+10+triplets&contentTypeConstruct=text%2Fturtle&contentTypeSelect=application%2Fsparql-results%2Bjson&endpoint=https%3A%2F%2Fdata.istex.fr%2Fsparql%2F&requestMethod=POST&tabTitle=Liste+de+dix+triplets&headers=%7B%7D&outputFormat=table",
     "description" : "Liste dix triplets, à partir du numéro 1000."
   },
   {
     "title" : "Nombre de triplets",
-    "content" : [
-"SELECT (COUNT(*) as ?nb) # Compte les triplets trouvés",
-"WHERE {",
-"  # Pas de contrainte particulière",
-"  ?subject ?verb ?complement",
-"}"
-    ],
+    "content" : "http://192.168.31.146:49452/triplestore/sparql/#query=SELECT+(COUNT(*)+as+%3Fnb)+%23+Compte+les+triplets+trouv%C3%A9s%0AWHERE+%7B%0A++%23+Pas+de+contrainte+particuli%C3%A8re%0A++%3Fsubject+%3Fverb+%3Fcomplement%0A%7D&contentTypeConstruct=text%2Fturtle&contentTypeSelect=application%2Fsparql-results%2Bjson&endpoint=https%3A%2F%2Fdata.istex.fr%2Fsparql%2F&requestMethod=POST&tabTitle=Liste+de+dix+triplets&headers=%7B%7D&outputFormat=table",
     "description" : "Compte tous les triplets présents dans le triple store (y compris les triplets par défaut ajoutés par OpenLink Virtuoso).",
     "tags" :  ["count"]
   },
   {
     "title" : "Nombre de triplets par graphe nommé",
-    "content" : [
-"# Affiche la variable ?g à côté du comptage des triplets correspondant",
-"# Ce comptage est stocké dans la variable ?nb",
-"SELECT ?g (COUNT(*) AS ?nb)",
-"WHERE {",
-"  # ?subject ?verb ?complement est le triplet appartenant au",
-"  # graphe nommé ?g",
-"  # Un graphe nommé est un sous-ensemble de triplets.",
-"  GRAPH ?g { ?subject ?verb ?complement . }",
-"}",
-"GROUP BY ?g # Groupe les triplets par graphe nommé",
-"ORDER BY DESC(?nb) # Trie les graphes par nombre de triplets"
-    ],
+    "content" : "http://192.168.31.146:49452/triplestore/sparql/#query=%23+Affiche+la+variable+%3Fg+%C3%A0+c%C3%B4t%C3%A9+du+comptage+des+triplets+correspondant%0A%23+Ce+comptage+est+stock%C3%A9+dans+la+variable+%3Fnb%0ASELECT+%3Fg+(COUNT(*)+AS+%3Fnb)%0AWHERE+%7B%0A++%23+%3Fsubject+%3Fverb+%3Fcomplement+est+le+triplet+appartenant+au%0A++%23+graphe+nomm%C3%A9+%3Fg%0A++%23+Un+graphe+nomm%C3%A9+est+un+sous-ensemble+de+triplets.%0A++GRAPH+%3Fg+%7B+%3Fsubject+%3Fverb+%3Fcomplement+.+%7D%0A%7D%0AGROUP+BY+%3Fg+%23+Groupe+les+triplets+par+graphe+nomm%C3%A9%0AORDER+BY+DESC(%3Fnb)+%23+Trie+les+graphes+par+nombre+de+triplets&contentTypeConstruct=text%2Fturtle&contentTypeSelect=application%2Fsparql-results%2Bjson&endpoint=https%3A%2F%2Fdata.istex.fr%2Fsparql%2F&requestMethod=POST&tabTitle=Query&headers=%7B%7D&outputFormat=table",
     "description" : "Donne la répartition des triplets par graphe nommé. Un graphe nommé étant une sous-partie du graphe global contenant tous les triplets.",
     "tags" : ["graphe"]
   },
   {
     "title" : "Triplets d’un graphe nommé",
-    "content" : [
-"# Affiche toutes les variables (dans ce cas, elles constituent un triplet)",
-"SELECT *",
-"FROM <https://enrichment-process.data.istex.fr/notice/graph> # Graphe dans lequel on cherche",
-"WHERE {",
-"  ?subject ?verb ?complement .",
-"}",
-"LIMIT 100 # Limite le nombre de réponses à 100"
-],
+    "content" : "http://192.168.31.146:49452/triplestore/sparql/#query=%23+Affiche+toutes+les+variables+(dans+ce+cas%2C+elles+constituent+un+triplet)%0ASELECT+*%0AFROM+%3Chttps%3A%2F%2Fenrichment-process.data.istex.fr%2Fnotice%2Fgraph%3E+%23+Graphe+dans+lequel+on+cherche%0AWHERE+%7B%0A++%3Fsubject+%3Fverb+%3Fcomplement+.%0A%7D%0ALIMIT+100+%23+Limite+le+nombre+de+r%C3%A9ponses+%C3%A0+100&contentTypeConstruct=text%2Fturtle&contentTypeSelect=application%2Fsparql-results%2Bjson&endpoint=https%3A%2F%2Fdata.istex.fr%2Fsparql%2F&requestMethod=POST&tabTitle=Query&headers=%7B%7D&outputFormat=table",
     "description" : "Affiche les cent premiers triplets d’un graphe nommé particulier. Quand on ne sélectionne pas de graphe nommé, la requête cherche dans tous les graphes nommés du système (c’est-à-dire tous les triplets).",
     "tags" : ["graphe"]
   },
   {
     "title" : "Triplets de deux graphes nommés",
-    "content" : [
-"SELECT *",
-"# On peut chercher dans plusieurs graphes nommés (et dans aucun autre),",
-"# en utilisant l’instruction FROM plusieurs fois.",
-"FROM <https://enrichment-process.data.istex.fr/notice/graph>",
-"FROM <https://wos-category.data.istex.fr/notice/graph>",
-"WHERE {",
-"  ?subject ?verb ?complement .",
-"}",
-"LIMIT 100"
-],
+    "content" : "http://192.168.31.146:49452/triplestore/sparql/#query=SELECT+*%0A%23+On+peut+chercher+dans+plusieurs+graphes+nomm%C3%A9s+(et+dans+aucun+autre)%2C%0A%23+en+utilisant+l%E2%80%99instruction+FROM+plusieurs+fois.%0AFROM+%3Chttps%3A%2F%2Fenrichment-process.data.istex.fr%2Fnotice%2Fgraph%3E%0AFROM+%3Chttps%3A%2F%2Fwos-category.data.istex.fr%2Fnotice%2Fgraph%3E%0AWHERE+%7B%0A++%3Fsubject+%3Fverb+%3Fcomplement+.%0A%7D%0ALIMIT+100&contentTypeConstruct=text%2Fturtle&contentTypeSelect=application%2Fsparql-results%2Bjson&endpoint=https%3A%2F%2Fdata.istex.fr%2Fsparql%2F&requestMethod=POST&tabTitle=Query&headers=%7B%7D&outputFormat=table",
     "description" : "Affiche les cent premiers triplets de deux graphes nommés particuliers.",
     "tags" : ["graphe", "graphes multiples"]
   },
   {
     "title" : "Récupération du label du type d’un document (avec filtrage sur la langue)",
-    "content" : [
-"# Déclaration d’un préfixe.",
-"# Dans la suite de la requête, skos: sera remplacé par # http://www.w3.org/2004/02/skos/core#",
-"PREFIX skos: <http://www.w3.org/2004/02/skos/core#>",
-"SELECT *",
-"WHERE {",
-"  # Le document ark:/67375/996-HMN8BG45-4 a un type de publication (istex:publicationType)",
-"  # qui est affecté à la variable ?pt.",
-"  <https://api.istex.fr/ark:/67375/996-HMN8BG45-4> ",
-"  <https://data.istex.fr/ontology/istex#publicationType> ?pt .",
-"    ?pt skos:prefLabel ?label . # ?pt est le point commun entre les triplets.",
-"  # skos:prefLabel est la propriété liant un type de publication à son libellé.",
-"  FILTER(LANG(?label) = 'fr') # Ne garde que les cas où ?label est en français.",
-"}"
-    ],
+    "content" : "http://192.168.31.146:49452/triplestore/sparql/#query=%23+D%C3%A9claration+d%E2%80%99un+pr%C3%A9fixe.%0A%23+Dans+la+suite+de+la+requ%C3%AAte%2C+skos%3A+sera+remplac%C3%A9+par+%23+http%3A%2F%2Fwww.w3.org%2F2004%2F02%2Fskos%2Fcore%23%0APREFIX+skos%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2004%2F02%2Fskos%2Fcore%23%3E%0ASELECT+*%0AWHERE+%7B%0A++%23+Le+document+ark%3A%2F67375%2F996-HMN8BG45-4+a+un+type+de+publication+(istex%3ApublicationType)%0A++%23+qui+est+affect%C3%A9+%C3%A0+la+variable+%3Fpt.%0A++%3Chttps%3A%2F%2Fapi.istex.fr%2Fark%3A%2F67375%2F996-HMN8BG45-4%3E%0A++%3Chttps%3A%2F%2Fdata.istex.fr%2Fontology%2Fistex%23publicationType%3E+%3Fpt+.%0A++++%3Fpt+skos%3AprefLabel+%3Flabel+.+%23+%3Fpt+est+le+point+commun+entre+les+triplets.%0A++%23+skos%3AprefLabel+est+la+propri%C3%A9t%C3%A9+liant+un+type+de+publication+%C3%A0+son+libell%C3%A9.%0A++FILTER(LANG(%3Flabel)+%3D+'fr')+%23+Ne+garde+que+les+cas+o%C3%B9+%3Flabel+est+en+fran%C3%A7ais.%0A%7D&contentTypeConstruct=text%2Fturtle&contentTypeSelect=application%2Fsparql-results%2Bjson&endpoint=https%3A%2F%2Fdata.istex.fr%2Fsparql%2F&requestMethod=POST&tabTitle=Query&headers=%7B%7D&outputFormat=table",
     "description" : "Affiche des informations attachées à un document ISTEX particulier. En l’occurrence, son type de publication, exprimé en français."
   },
   {
     "title" : "Valeurs multiples (depuis la BNF)",
-    "content" : [
-"# Il faut interroger https://data.bnf.fr/sparql au lieu de https://data.istex.fr/sparql/",
-"",     
-"PREFIX skos: <http://www.w3.org/2004/02/skos/core#>",
-"PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>",
-"SELECT *",
-"WHERE",
-"{",
-"  # Ce motif sélectionne les objets dont le libellé en français est Bioinformatique",
-"  ?uri skos:prefLabel \"Bioinformatique\"@fr.",
-"  # OPTIONAL permet de conserver le triplet courant dans ceux à afficher même si",
-"  #     le motif ne trouve pas de correspondance.",
-"  # Sélectionne un éventuel (OPTIONAL) libellé alternatif (skos:altLabel)",
-"  OPTIONAL { ?uri skos:altLabel ?AutreNom. }",
-"  # Sélectionne un terme lié (skos:related)",
-"  OPTIONAL { ?uri skos:related ?Relation.",
-"  ?Relation skos:prefLabel ?TermeRelie. }",
-"}"
-    ],
+    "content" : "http://192.168.31.146:49452/triplestore/sparql/#query=%23+Il+faut+interroger+https%3A%2F%2Fdata.bnf.fr%2Fsparql+au+lieu+de+https%3A%2F%2Fdata.istex.fr%2Fsparql%2F%0A+++++%0APREFIX+skos%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2004%2F02%2Fskos%2Fcore%23%3E%0APREFIX+rdfs%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23%3E%0ASELECT+*%0AWHERE%0A%7B%0A++%23+Ce+motif+s%C3%A9lectionne+les+objets+dont+le+libell%C3%A9+en+fran%C3%A7ais+est+Bioinformatique%0A++%3Furi+skos%3AprefLabel+%22Bioinformatique%22%40fr.%0A++%23+OPTIONAL+permet+de+conserver+le+triplet+courant+dans+ceux+%C3%A0+afficher+m%C3%AAme+si%0A++%23+++++le+motif+ne+trouve+pas+de+correspondance.%0A++%23+S%C3%A9lectionne+un+%C3%A9ventuel+(OPTIONAL)+libell%C3%A9+alternatif+(skos%3AaltLabel)%0A++OPTIONAL+%7B+%3Furi+skos%3AaltLabel+%3FAutreNom.+%7D%0A++%23+S%C3%A9lectionne+un+terme+li%C3%A9+(skos%3Arelated)%0A++OPTIONAL+%7B+%3Furi+skos%3Arelated+%3FRelation.%0A++%3FRelation+skos%3AprefLabel+%3FTermeRelie.+%7D%0A%7D&contentTypeConstruct=text%2Fturtle&contentTypeSelect=application%2Fsparql-results%2Bjson&endpoint=https%3A%2F%2Fdata.bnf.fr%2Fsparql&requestMethod=POST&tabTitle=Query&headers=%7B%7D&outputFormat=table",
     "description" : "Cette interrogation d’un autre SPARQL Endpoint (celui de la BNF) illustre le nombre de résultats quand une propriété a plusieurs valeurs. Ici, un seul concept (Bioinformatique) possède plusieurs libellés. Chaque libellé donne lieu à une ligne. L’interrogation suivante montre comment réduire ce résultat à une seule ligne.",
-    "endpoint" : "https://data.bnf.fr/sparql",
     "tags" : ["BNF"] 
   },
   {
     "title" : "Concaténation des valeurs (depuis la BNF)",
-    "content" : [
-"# Il faut interroger https://data.bnf.fr/sparql au lieu de https://data.istex.fr/sparql/ ",
-
-"PREFIX skos: <http://www.w3.org/2004/02/skos/core#>",
-"PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>",
-"# Affiche l'URL de la notice RAMEAU, le libellé alternatif, ",
-"SELECT ?NoticeRAMEAU ",
-"  # GROUP_CONCAT concatène des valeurs différentes d'une variable",
-"  #   (?AutreNom) dans une autre variable (?AutresNoms).",
-"  # DISTINCT retire les doublons dans un ensemble de valeurs ",
-"  #   (toutes les valeurs de la variable ?AutreNom).",
-"  GROUP_CONCAT(DISTINCT ?AutreNom; SEPARATOR=", ") AS ?AutresNoms",
-"  ?TermeRelie # un éventuel terme lié (skos:related)",
-"WHERE",
-"{",
-"  # Ce motif sélectionne les objets dont le libellé en français est Bioinformatique",
-"  ?uri skos:prefLabel \"Bioinformatique\"@fr.",
-"  # OPTIONAL permet de conserver le triplet courant dans ceux à afficher même si",
-"  #          le motif ne trouve pas de correspondance.",
-"  # Sélectionne un éventuel (OPTIONAL) libellé alternatif (skos:altLabel)",
-"  OPTIONAL { ?uri skos:altLabel ?AutreNom. }",
-"  # Sélectionne un terme lié (skos:related)",
-"  OPTIONAL { ?uri skos:related ?Relation.",
-"             ?Relation skos:prefLabel ?TermeRelie. }",
-"}",
-"# Groupe les triplets par toutes les variables dont ",
-"# les valeurs ne sont pas concaténées (GROUP_CONCAT) dans le SELECT.",
-"",
-"# GROUP BY renvoie une seule ligne pour toutes les lignes ",
-"# qui ont la même valeur pour les deux variables.",
-"GROUP BY ?NoticeRAMEAU ?TermeRelie"
-    ],
+    "content" : "http://192.168.31.146:49452/triplestore/sparql/#query=%23+Il+faut+interroger+https%3A%2F%2Fdata.bnf.fr%2Fsparql+au+lieu+de+https%3A%2F%2Fdata.istex.fr%2Fsparql%2F+%0A%0APREFIX+skos%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2004%2F02%2Fskos%2Fcore%23%3E%0APREFIX+rdfs%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23%3E%0A%23+Affiche+l'URL+de+la+notice+RAMEAU%2C+le+libell%C3%A9+alternatif%2C+%0ASELECT+%3FNoticeRAMEAU%0A++%23+GROUP_CONCAT+concat%C3%A8ne+des+valeurs+diff%C3%A9rentes+d'une+variable%0A++%23+++(%3FAutreNom)+dans+une+autre+variable+(%3FAutresNoms).%0A++%23+DISTINCT+retire+les+doublons+dans+un+ensemble+de+valeurs+%0A++%23+++(toutes+les+valeurs+de+la+variable+%3FAutreNom).%0A++GROUP_CONCAT(DISTINCT+%3FAutreNom%3B+SEPARATOR%3D%22%2C+%22)+AS+%3FAutresNoms%0A++%3FTermeRelie+%23+un+%C3%A9ventuel+terme+li%C3%A9+(skos%3Arelated)%0AWHERE%0A%7B%0A++%23+Ce+motif+s%C3%A9lectionne+les+objets+dont+le+libell%C3%A9+en+fran%C3%A7ais+est+Bioinformatique%0A++%3Furi+skos%3AprefLabel+%22Bioinformatique%22%40fr.%0A++%23+OPTIONAL+permet+de+conserver+le+triplet+courant+dans+ceux+%C3%A0+afficher+m%C3%AAme+si%0A++%23++++++++++le+motif+ne+trouve+pas+de+correspondance.%0A++%23+S%C3%A9lectionne+un+%C3%A9ventuel+(OPTIONAL)+libell%C3%A9+alternatif+(skos%3AaltLabel)%0A++OPTIONAL+%7B+%3Furi+skos%3AaltLabel+%3FAutreNom.+%7D%0A++%23+S%C3%A9lectionne+un+terme+li%C3%A9+(skos%3Arelated)%0A++OPTIONAL+%7B+%3Furi+skos%3Arelated+%3FRelation.%0A+++++++++++++%3FRelation+skos%3AprefLabel+%3FTermeRelie.+%7D%0A%7D%0A%23+Groupe+les+triplets+par+toutes+les+variables+dont+%0A%23+les+valeurs+ne+sont+pas+concat%C3%A9n%C3%A9es+(GROUP_CONCAT)+dans+le+SELECT.%0A%0A%23+GROUP+BY+renvoie+une+seule+ligne+pour+toutes+les+lignes+%0A%23+qui+ont+la+m%C3%AAme+valeur+pour+les+deux+variables.%0AGROUP+BY+%3FNoticeRAMEAU+%3FTermeRelie&contentTypeConstruct=text%2Fturtle&contentTypeSelect=application%2Fsparql-results%2Bjson&endpoint=https%3A%2F%2Fdata.bnf.fr%2Fsparql&requestMethod=POST&tabTitle=Query&headers=%7B%7D&outputFormat=table",
     "description" : "Cette requête est similaire à la précédente (Valeurs multiples (BNF)), mais elle rassemble 4 lignes exprimant les propriétés d’un même concept en une seule.",
-    "endpoint" : "https://data.bnf.fr/sparql",
     "tags" : ["BNF"] 
   },
   {
     "title" : "Interrogation BNF",
-    "content" : [
-"# Il faut interroger https://data.bnf.fr/sparql au lieu de https://data.istex.fr/sparql/ ",
-"",
-"PREFIX skos: <http://www.w3.org/2004/02/skos/core#>",
-"PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>",
-"# Affiche l'URL de la notice RAMEAU, le libellé alternatif, ",
-"SELECT ?NoticeRAMEAU ",
-"      # GROUP_CONCAT concatène des valeurs différentes d'une variable",
-"      #   (?AutreNom) dans une autre variable (?AutresNoms).",
-"      # DISTINCT retire les doublons dans un ensemble de valeurs", 
-"      #   (toutes les valeurs de la variable ?AutreNom).",
-"      GROUP_CONCAT(DISTINCT ?AutreNom; SEPARATOR=", ") AS ?AutresNoms",
-"      # affiche le(s) terme(s) générique(s)",
-"      (GROUP_CONCAT(DISTINCT ?TermePlusLargeTmp;SEPARATOR=\" && \") AS ?TermePlusLarge)",
-"      # le(s) terme(s) spécifique(s)",
-"      (GROUP_CONCAT(DISTINCT ?TermePlusPrecisTmp;SEPARATOR=\" && \") AS ?TermePlusPrecis)",
-"      ?TermeRelie # un éventuel terme lié (skos:related)",
-"      # le ou les concept(s) proche(s)",
-"      (GROUP_CONCAT(DISTINCT ?URIAlignement;SEPARATOR=\" && \") AS ?AlignementBnf)",
-"WHERE",
-"{",
-"  # Ce motif sélectionne les objets dont le libellé en français est Bioinformatique",
-"  ?uri skos:prefLabel \"Bioinformatique\"@fr.",
-"  # OPTIONAL permet de conserver le triplet courant dans ceux à afficher même si",
-"  #          le motif ne trouve pas de correspondance.",
-"  # Sélectionne un éventuel (OPTIONAL) libellé alternatif (skos:altLabel)",
-"  OPTIONAL { ?uri skos:altLabel ?AutreNom. }",
-"  # Sélectionne l'éventuel lien vers la notice RAMEAU",
-"  OPTIONAL { ?uri rdfs:seeAlso ?NoticeRAMEAU. }",
-"  # Sélectionne le libellé d'un terme générique (skos:broader)",
-"  OPTIONAL { ?uri skos:broader ?URIBroader.",
-"             ?URIBroader skos:prefLabel ?TermePlusLargeTmp. }",
-"  # Sélectionne le libellé d'un terme spécifique (skos:narrower)",
-"  OPTIONAL { ?uri skos:narrower ?URINarrower.",
-"             ?URINarrower skos:prefLabel ?TermePlusPrecisTmp. }",
-"  # Sélectionne un alignement proche",
-"  OPTIONAL { ?uri skos:closeMatch ?URIAlignement. }",
-"  # Sélectionne un terme lié (skos:related)",
-"  OPTIONAL { ?uri skos:related ?Relation.",
-"             ?Relation skos:prefLabel ?TermeRelie. }",
-"}",
-"# Groupe les triplets par toutes les variables dont ",
-"# les valeurs ne sont pas concaténées (GROUP_CONCAT) dans le SELECT.",
-"",
-"# GROUP BY renvoie une seule ligne pour toutes les lignes",
-"# qui ont la même valeur pour les deux variables.",
-"GROUP BY ?NoticeRAMEAU ?TermeRelie"
-    ],
+    "content" : "http://192.168.31.146:49452/triplestore/sparql/#query=%23+Il+faut+interroger+https%3A%2F%2Fdata.bnf.fr%2Fsparql+au+lieu+de+https%3A%2F%2Fdata.istex.fr%2Fsparql%2F%0A%0APREFIX+skos%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2004%2F02%2Fskos%2Fcore%23%3E%0APREFIX+rdfs%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23%3E%0A%23+Affiche+l'URL+de+la+notice+RAMEAU%2C+le+libell%C3%A9+alternatif%2C%0ASELECT+%3FNoticeRAMEAU+%0A++++++%23+GROUP_CONCAT+concat%C3%A8ne+des+valeurs+diff%C3%A9rentes+d'une+variable%0A++++++%23+++(%3FAutreNom)+dans+une+autre+variable+(%3FAutresNoms).%0A++++++%23+DISTINCT+retire+les+doublons+dans+un+ensemble+de+valeurs%0A++++++%23+++(toutes+les+valeurs+de+la+variable+%3FAutreNom).%0A++++++GROUP_CONCAT(DISTINCT+%3FAutreNom%3B+SEPARATOR%3D%22%2C+%22)+AS+%3FAutresNoms%0A++++++%23+affiche+le(s)+terme(s)+g%C3%A9n%C3%A9rique(s)%0A++++++(GROUP_CONCAT(DISTINCT+%3FTermePlusLargeTmp%3BSEPARATOR%3D%22+%26%26+%22)+AS+%3FTermePlusLarge)%0A++++++%23+le(s)+terme(s)+sp%C3%A9cifique(s)%0A++++++(GROUP_CONCAT(DISTINCT+%3FTermePlusPrecisTmp%3BSEPARATOR%3D%22+%26%26+%22)+AS+%3FTermePlusPrecis)%0A++++++%3FTermeRelie+%23+un+%C3%A9ventuel+terme+li%C3%A9+(skos%3Arelated)%0A++++++%23+le+ou+les+concept(s)+proche(s)%0A++++++(GROUP_CONCAT(DISTINCT+%3FURIAlignement%3BSEPARATOR%3D%22+%26%26+%22)+AS+%3FAlignementBnf)%0AWHERE%0A%7B%0A++%23+Ce+motif+s%C3%A9lectionne+les+objets+dont+le+libell%C3%A9+en+fran%C3%A7ais+est+Bioinformatique%0A++%3Furi+skos%3AprefLabel+%22Bioinformatique%22%40fr.%0A++%23+OPTIONAL+permet+de+conserver+le+triplet+courant+dans+ceux+%C3%A0+afficher+m%C3%AAme+si%0A++%23++++++++++le+motif+ne+trouve+pas+de+correspondance.%0A++%23+S%C3%A9lectionne+un+%C3%A9ventuel+(OPTIONAL)+libell%C3%A9+alternatif+(skos%3AaltLabel)%0A++OPTIONAL+%7B+%3Furi+skos%3AaltLabel+%3FAutreNom.+%7D%0A++%23+S%C3%A9lectionne+l'%C3%A9ventuel+lien+vers+la+notice+RAMEAU%0A++OPTIONAL+%7B+%3Furi+rdfs%3AseeAlso+%3FNoticeRAMEAU.+%7D%0A++%23+S%C3%A9lectionne+le+libell%C3%A9+d'un+terme+g%C3%A9n%C3%A9rique+(skos%3Abroader)%0A++OPTIONAL+%7B+%3Furi+skos%3Abroader+%3FURIBroader.%0A+++++++++++++%3FURIBroader+skos%3AprefLabel+%3FTermePlusLargeTmp.+%7D%0A++%23+S%C3%A9lectionne+le+libell%C3%A9+d'un+terme+sp%C3%A9cifique+(skos%3Anarrower)%0A++OPTIONAL+%7B+%3Furi+skos%3Anarrower+%3FURINarrower.%0A+++++++++++++%3FURINarrower+skos%3AprefLabel+%3FTermePlusPrecisTmp.+%7D%0A++%23+S%C3%A9lectionne+un+alignement+proche%0A++OPTIONAL+%7B+%3Furi+skos%3AcloseMatch+%3FURIAlignement.+%7D%0A++%23+S%C3%A9lectionne+un+terme+li%C3%A9+(skos%3Arelated)%0A++OPTIONAL+%7B+%3Furi+skos%3Arelated+%3FRelation.%0A+++++++++++++%3FRelation+skos%3AprefLabel+%3FTermeRelie.+%7D%0A%7D%0A%23+Groupe+les+triplets+par+toutes+les+variables+dont+%0A%23+les+valeurs+ne+sont+pas+concat%C3%A9n%C3%A9es+(GROUP_CONCAT)+dans+le+SELECT.%0A%0A%23+GROUP+BY+renvoie+une+seule+ligne+pour+toutes+les+lignes%0A%23+qui+ont+la+m%C3%AAme+valeur+pour+les+deux+variables.%0AGROUP+BY+%3FNoticeRAMEAU+%3FTermeRelie&contentTypeConstruct=text%2Fturtle&contentTypeSelect=application%2Fsparql-results%2Bjson&endpoint=https%3A%2F%2Fdata.bnf.fr%2Fsparql&requestMethod=POST&tabTitle=Query&headers=%7B%7D&outputFormat=table",
     "description" : "Affiche des informations de la BNF sur le concept « Bioinformatique », dont la notice RAMEAU, les termes génériques et spécifiques, des alignements extérieurs... Cette requête étend la requête précédente à d’autres champs.",
-    "endpoint" : "https://data.bnf.fr/sparql" ,
     "tags" : ["BNF"]
   },
   {
@@ -213,52 +56,28 @@
   },
   {
     "title" : "Nombre de triplets par graphe nommé",
-    "content" : [
-"SELECT DISTINCT ?g, count(*) AS ?nb",
-"WHERE {",
-"  graph ?g { ?s ?p ?o }",
-"}"
-],
+    "content" : "http://192.168.31.146:49452/triplestore/sparql/#query=SELECT+DISTINCT+%3Fg%2C+count(*)+AS+%3Fnb%0AWHERE+%7B%0A++graph+%3Fg+%7B+%3Fs+%3Fp+%3Fo+%7D%0A%7D&contentTypeConstruct=text%2Fturtle&contentTypeSelect=application%2Fsparql-results%2Bjson&endpoint=https%3A%2F%2Fdata.istex.fr%2Fsparql%2F&requestMethod=POST&tabTitle=Query&headers=%7B%7D&outputFormat=table",
     "description" : "Trouver tous les graphes de notre triplestore avec le nombre de triplets correspondant",
     "tags" : ["graphe" , "count"]
   },
   {
     "title" : "Propriétés d’un graphe",
-    "content" : [
-"SELECT DISTINCT ?p",
-"FROM <https://scopus-category.data.istex.fr/graph>",
-"WHERE {",
-"  ?s ?p ?o",
-"}"
-    ],
+    "content" : "http://192.168.31.146:49452/triplestore/sparql/#query=SELECT+DISTINCT+%3Fp%0AFROM+%3Chttps%3A%2F%2Fscopus-category.data.istex.fr%2Fgraph%3E%0AWHERE+%7B%0A++%3Fs+%3Fp+%3Fo%0A%7D&contentTypeConstruct=text%2Fturtle&contentTypeSelect=application%2Fsparql-results%2Bjson&endpoint=https%3A%2F%2Fdata.istex.fr%2Fsparql%2F&requestMethod=POST&tabTitle=Query&headers=%7B%7D&outputFormat=table",
     "description" : "Trouver les propriétés pour le graphe « scopus-category.data.istex.fr »"
   },
   {
     "title" : "Nombre d’articles de recherche",
-    "content" : [
-"SELECT (count (?docistex) AS ?nombredocistex)",
-"WHERE",
-"{",
-  "?docistex <https://data.istex.fr/ontology/istex#contentType> ?conttype.",
-  "?conttype <http://www.w3.org/2004/02/skos/core#prefLabel> \"papier de recherche\"@fr",
-"}"
-    ],
+    "content" : "http://192.168.31.146:49452/triplestore/sparql/#query=SELECT+(count+(%3Fdocistex)+AS+%3Fnombredocistex)%0AWHERE%0A%7B%0A++%3Fdocistex+%3Chttps%3A%2F%2Fdata.istex.fr%2Fontology%2Fistex%23contentType%3E+%3Fconttype.%0A++%3Fconttype+%3Chttp%3A%2F%2Fwww.w3.org%2F2004%2F02%2Fskos%2Fcore%23prefLabel%3E+%22papier+de+recherche%22%40fr%0A%7D&contentTypeConstruct=text%2Fturtle&contentTypeSelect=application%2Fsparql-results%2Bjson&endpoint=https%3A%2F%2Fdata.istex.fr%2Fsparql%2F&requestMethod=POST&tabTitle=Query&headers=%7B%7D&outputFormat=table",
     "description" : "Combien y a-t-il de documents correspondant au type de document (ou genre) « article de recherche » ?"
   },
   {
     "title" : "Catégories Inist des papiers de recherche",
-    "content" : [
-"SELECT (count (?docistex) AS ?totaldocistex) ?catinist",
-"WHERE",
-"{",
-"?docistex <https://data.istex.fr/ontology/istex#contentType> ?conttype.",
-"?conttype <http://www.w3.org/2004/02/skos/core#prefLabel> \"papier de recherche\"@fr.",
-"?docistex <https://data.istex.fr/ontology/istex#subjectInist> ?subjectInist.",
-"?subjectInist <http://www.w3.org/2004/02/skos/core#prefLabel> ?catinist.",
-"  filter (lang(?catinist)= \"fr\")",
-"}",
-"ORDER BY desc (?totaldocistex)"
-    ],
+    "content" : "http://192.168.31.146:49452/triplestore/sparql/#query=SELECT+(count+(%3Fdocistex)+AS+%3Ftotaldocistex)+%3Fcatinist%0AWHERE%0A%7B%0A%3Fdocistex+%3Chttps%3A%2F%2Fdata.istex.fr%2Fontology%2Fistex%23contentType%3E+%3Fconttype.%0A%3Fconttype+%3Chttp%3A%2F%2Fwww.w3.org%2F2004%2F02%2Fskos%2Fcore%23prefLabel%3E+%22papier+de+recherche%22%40fr.%0A%3Fdocistex+%3Chttps%3A%2F%2Fdata.istex.fr%2Fontology%2Fistex%23subjectInist%3E+%3FsubjectInist.%0A%3FsubjectInist+%3Chttp%3A%2F%2Fwww.w3.org%2F2004%2F02%2Fskos%2Fcore%23prefLabel%3E+%3Fcatinist.%0A++filter+(lang(%3Fcatinist)%3D+%22fr%22)%0A%7D%0AORDER+BY+desc+(%3Ftotaldocistex)&contentTypeConstruct=text%2Fturtle&contentTypeSelect=application%2Fsparql-results%2Bjson&endpoint=https%3A%2F%2Fdata.istex.fr%2Fsparql%2F&requestMethod=POST&tabTitle=Query&headers=%7B%7D&outputFormat=table",
     "description" : "La répartition des catégories inist pour le content type « papier de recherche »@fr"
+  },
+  {
+    "title" : "Pourcentage des catégories Inist",
+    "content" : "http://192.168.31.146:49452/triplestore/sparql/#query=SELECT+%0A%09%3Flibellecatinist+%0A%09(count(%3Flibellecatinist)+as+%3Ftotallibellecatinist)+%0A%09(count+(%3Flibellecatinist)*1000%2F%3FtotalcontentTypePDR+as+%3FperThousand)%0AWHERE%0A%7B%0A%09%7B%0A++++%09%23+libell%C3%A9s+en+fran%C3%A7ais+des+cat%C3%A9gories+Inist+des+documents+dont+le+type+est+%22papier+de+recherche%22%0A%09%09select+%3Flibellecatinist%0A+%09%09where%0A+%09%09%7B%0A%09%09%09%3Fdocistex+%3Chttps%3A%2F%2Fdata.istex.fr%2Fontology%2Fistex%23contentType%3E+%3Fconttype.%0A++++++++++++%3Fconttype+%3Chttp%3A%2F%2Fwww.w3.org%2F2004%2F02%2Fskos%2Fcore%23prefLabel%3E+%22papier+de+recherche%22%40fr.%0A++++++++++++%3Fdocistex+%3Chttps%3A%2F%2Fdata.istex.fr%2Fontology%2Fistex%23subjectInist%3E+%3Fcatinist.%0A++++++++++++%3Fcatinist+%3Chttp%3A%2F%2Fwww.w3.org%2F2004%2F02%2Fskos%2Fcore%23prefLabel%3E+%3Flibellecatinist.%0A+++%09%09%09filter(lang(%3Flibellecatinist)%3D+%22fr%22)%0A%09%09%7D%0A%09%7D%0A%09%7B%0A++++%09%23+Nombre+total+de+documents+de+type+%22papier+de+recherche%22%0A%09%09select+(count(%3Fdocistex)+as+%3FtotalcontentTypePDR)%0A+%09%09where%0A%09%09%7B++%0A++++++++++%3Fdocistex+%3Chttps%3A%2F%2Fdata.istex.fr%2Fontology%2Fistex%23contentType%3E+%3Fconttype.%0A++++++++++%3Fconttype+%3Chttp%3A%2F%2Fwww.w3.org%2F2004%2F02%2Fskos%2Fcore%23prefLabel%3E+%22papier+de+recherche%22%40fr.%0A++++%09%7D%0A%09%7D%0A%7D%0Aorder+by+desc+(%3FperThousand)&contentTypeConstruct=text%2Fturtle&contentTypeSelect=application%2Fsparql-results%2Bjson&endpoint=https%3A%2F%2Fdata.istex.fr%2Fsparql%2F&requestMethod=POST&tabTitle=Query&headers=%7B%7D&outputFormat=table",
+    "description" : "La répartition “catégorie inist” pour le content type « papier de recherche »@fr, exprimée en pourcentage"
   }
 ]
