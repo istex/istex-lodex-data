@@ -280,11 +280,18 @@ function getSelectedTags(){
 function showPopup(popup){
   popup.classList.remove('hidePopup');
   popup.classList.add('showPopup');
+  document.body.style.setProperty('padding-right', '15px');
+  document.body.style.setProperty('overflow', 'hidden');
 }
 
 function hidePopup(popup){
   popup.classList.remove('showPopup');
   popup.classList.add('hidePopup');
+  document.body.classList.remove('popupMode');
+  setTimeout(() => {
+    document.body.style.removeProperty('padding-right');
+    document.body.style.removeProperty('overflow');
+  }, 500);
 }
 
 function closeDropdowns(){
