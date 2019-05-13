@@ -92,7 +92,10 @@ function initExamples(examplesInJson, yasgui) {
     if(selected === undefined) return;    
     var newTab = yasgui.addTab();
     newTab.rename(selected.title);
-    var query = "# " + selected.description + "\n\n" + selected.query;
+    var query = selected.query;
+    if(selected.description !== undefined){
+      query = "# " + selected.description + "\n\n" + query;
+    }
     newTab.setQuery(query);
     var endpoint = selected.endpoint;
     if(endpoint !== undefined) {
@@ -206,7 +209,9 @@ function refreshList(){
     
     var descDiv = document.createElement('div');
     descDiv.classList.add('description');
-    descDiv.appendChild(document.createTextNode(description));
+    if(description !== undefined){
+      descDiv.appendChild(document.createTextNode(description));
+    }
     li.appendChild(descDiv);
     
     
