@@ -88,6 +88,7 @@
 .popup {
     max-width: 900px;
     min-width: 500px;
+    width: 50vw;
     border: 1px solid #242b32;
     background: url(/img/BG_ISTEX_LIGHT_DESKTOP.jpg) center repeat;
     color: #242b32;
