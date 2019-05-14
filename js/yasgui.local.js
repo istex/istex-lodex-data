@@ -240,6 +240,9 @@ function refreshList(){
 }
 
 function shouldShowExample(elem, search, selectedTags){  
+
+  //si pas de titre ou de requête
+  if(elem.title === undefined || elem.query === undefined) { return false; }
   
   //pas de filtre
   if(selectedTags.length === 0 && search === "") { return true; }
