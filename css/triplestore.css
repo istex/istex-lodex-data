@@ -1,3 +1,7 @@
+.yasgui.hasFullScreen {
+    z-index: 20000;
+}
+
 #buttons {
     display: flex;
     flex-direction: row;
