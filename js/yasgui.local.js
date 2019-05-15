@@ -93,8 +93,9 @@ function initExamples(examplesInJson, yasgui) {
     var newTab = yasgui.addTab();
     newTab.rename(selected.title);
     var query = selected.query;
+    //ajoute la description en commentaire au début de la requete
     if(selected.description !== undefined){
-      query = "# " + selected.description + "\n\n" + query;
+      query = '# ' + wordwrap(selected.description, 80, '# ') + '\n\n' + selected.query;
     }
     newTab.setQuery(query);
     var endpoint = selected.endpoint;
@@ -318,4 +319,15 @@ function getUrlArgs(url){
   const keysValues = reduced.split('&').map((elem) => elem.split('='));
   const cleaned = keysValues.map((keyValue) => keyValue.map(elem => decodeURIComponent(elem.replace(/\+/g, ' '))));
   return Object.fromEntries(cleaned);
+}
+
+function wordwrap(str, width, startLine){
+  if(str === null) return '';
+  if(width === null) { width = 50; }
+  if(startLine === null) { startLine = ''; }
+
+  const regexString = '.{1,' + width + '}([\\s\u200B]+|$)|[^\\s\u200B]+?([\\s\u200B]+|$)';
+  const regExp = new RegExp(regexString, 'g');
+  const lines = str.match(regExp) || [];
+  return lines.join('\n' + startLine);
 }
