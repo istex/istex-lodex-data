@@ -6,7 +6,23 @@
     display: flex;
     flex-direction: row;
     justify-content: center;
-    transform: translateX(-45px);
+}
+
+#links {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    transform: translateX(-40px);
+}
+
+#links > a {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    color: #458CA5;
+}
+
+#links > a:hover {
+    text-decoration: underline;
 }
 
 .btn, .btn:focus {
