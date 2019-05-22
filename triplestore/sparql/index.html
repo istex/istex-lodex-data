@@ -12,13 +12,14 @@
   <div id="buttons">
     <button id="showExamples" class="btn">exécuter des exemples</button>
     <button id="showDiagram" class="btn">Voir la structure des données</button>
+    <button id="showDumps" class="btn">Voir les dumps de DATA-ISTEX</a>
   </div>
   
   <div id="popupExamples" class="popupContainer">
     <div class="popup">
       <div class="popupHeader">
         <h4 class="popupTitle">Exemples de requêtes SPARQL</h4>
-        <span id="closePopup"><img src="/img/ic_close.svg"/></span>
+        <span class="closePopup"><img src="/img/ic_close.svg"/></span>
       </div>
       <div class="popupOptions">
         <div class="dropdown">
@@ -42,8 +43,19 @@
     <img id="diagramImg" src="/img/data_structure_istex.jpg">
   </div>
 
+  <div id="popupDumps" class="popupContainer">
+    <div class="popup">
+      <div class="popupHeader">
+        <h4 class="popupTitle">Dumps de data-ISTEX</h4>
+        <span class="closePopup"><img src="/img/ic_close.svg"/></span>
+      </div>
+      <div class="popupBody popupBody-noscroll">
+        <iframe id="dumpsFrame"></iframe>
+      </div>
+    </div>
+  </div>
+
   <div id="links">
-    <a href="//public-dumps.data.istex.fr/" target="_blank">Dumps de DATA-ISTEX</a>
     <a href="//sparql-playground.sib.swiss/" target="_blank">Apprendre SPARQL</a>
   </div>
   <div id="YASGUI"></div>

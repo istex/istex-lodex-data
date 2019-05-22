@@ -4,10 +4,10 @@ let tags;
 
 setTimeout(function(){
   YASGUI.YASQE.defaults.value = `SELECT *
-WHERE {
-  ?subject ?verb ?complement .
-}
-LIMIT 100`;
+  WHERE {
+    ?subject ?verb ?complement .
+  }
+  LIMIT 100`;
   var options = {
     catalogueEndpoints: [
       { endpoint: "https://data.istex.fr/sparql/", title: "ISTEX" },
@@ -104,25 +104,35 @@ function initExamples(examplesInJson, yasgui) {
     }else{
       newTab.setEndpoint(YASGUI.defaults.yasqe.sparql.endpoint);
     }
-    hidePopup(closeBt.closest('.popupContainer'));
+    hidePopup(examplesPopup);
     newTab.yasqe.query();
   });
   
-  var closeBt =  document.getElementById('closePopup');
-  closeBt.addEventListener('click', function(){
-    hidePopup(closeBt.closest('.popupContainer'));
-  });
+  var closeBts =  document.querySelectorAll('.closePopup');
+  closeBts.forEach(elem => {
+    elem.addEventListener('click', function(){
+      hidePopup(elem.closest('.popupContainer'));
+    });
+  })
   
   
   //affichage des exemples lors du click sur le bouton "executer des exemples"
   document.getElementById('showExamples').addEventListener('click', function(){ 
-      showPopup(examplesPopup);
+    showPopup(examplesPopup);
   });
-
+  
   //affichage du diagramme lors du click sur le bouton "structure des données"
   const diagramPopup = document.getElementById('popupDiagram');
   document.getElementById('showDiagram').addEventListener('click', function(){ 
-      showPopup(diagramPopup);
+    showPopup(diagramPopup);
+  });
+  
+  //affichage des dumps lors du click sur le bouton "voir les dumps"
+  const dumpsPopup = document.getElementById('popupDumps');
+  const dumpsIframe = document.getElementById('dumpsFrame');
+  document.getElementById('showDumps').addEventListener('click', function(){
+    showPopup(dumpsPopup);
+    dumpsIframe.setAttribute('src', '//public-dumps.data.istex.fr/');
   });
   
   //affichage de la sélection de tags
@@ -241,7 +251,7 @@ function refreshList(){
 }
 
 function shouldShowExample(elem, search, selectedTags){  
-
+  
   //si pas de titre ou de requête
   if(elem.title === undefined || (elem.query === undefined && elem.title !== '---' )) { return false; }
   
@@ -325,7 +335,7 @@ function wordwrap(str, width, startLine){
   if(str === null) return '';
   if(width === null) { width = 50; }
   if(startLine === null) { startLine = ''; }
-
+  
   const regexString = '.{1,' + width + '}([\\s\u200B]+|$)|[^\\s\u200B]+?([\\s\u200B]+|$)';
   const regExp = new RegExp(regexString, 'g');
   const lines = str.match(regExp) || [];
