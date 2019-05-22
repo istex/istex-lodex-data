@@ -4,10 +4,10 @@ let tags;
 
 setTimeout(function(){
   YASGUI.YASQE.defaults.value = `SELECT *
-  WHERE {
-    ?subject ?verb ?complement .
-  }
-  LIMIT 100`;
+WHERE {
+  ?subject ?verb ?complement .
+}
+LIMIT 100`;
   var options = {
     catalogueEndpoints: [
       { endpoint: "https://data.istex.fr/sparql/", title: "ISTEX" },
