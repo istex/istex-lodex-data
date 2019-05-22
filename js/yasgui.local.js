@@ -158,8 +158,9 @@ function initExamples(examplesInJson, yasgui) {
       //fermeture de la sélection des tags
       if(closeDropdowns()) { return; }
       //fermeture de la pop-up
-      if(examplesPopup.classList.contains("showPopup")){
-        hidePopup(examplesPopup);
+      const openPopup = document.querySelector('.showPopup');
+      if(openPopup !== undefined){
+        hidePopup(openPopup);
         return;
       }
     }
