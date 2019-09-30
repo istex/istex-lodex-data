@@ -5,6 +5,15 @@ body {
     color: #303030;
     background: url(../img/BG_ISTEX_LIGHT_DESKTOP.jpg) center repeat;
 }
+.breadcrumb-trail {
+    color: #458ca5 !important;
+}
+.breadcrumb-item-link {
+    color: #458ca5 !important;
+}
+.breadcrumb-item-link:hover {
+    color: #23527c !important;
+}
 nav.nav-bar-menu {
     background-color: #242b32;
 }
