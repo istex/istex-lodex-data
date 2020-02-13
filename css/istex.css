@@ -1,3 +1,43 @@
+
+html {
+	font-size: 62.5%;
+}
+* {
+	box-sizing: border-box;
+}
+:before, :after {
+	box-sizing: border-box;
+}
+ol, ul {
+	margin-top: 0;
+	margin-bottom: 10px;
+}
+a {
+    color: #337ab7;
+    text-decoration: none;
+}
+header {
+	position: sticky !important;
+	top: 0;
+	z-index: 100;
+}
+.navbar {
+	border: 1px solid transparent;
+}
+.container {
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
+.h1, .h2, .h3, h1, h2, h3 {
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
+    font-weight: 500;
+    line-height: 1.1;
+}
 body {
     padding-top: 0px;
     font-family: 'Open sans', sans-serif !important;
@@ -25,6 +65,9 @@ nav.nav-bar-menu {
 }
 img.nav-bar-icon {
     display: none;
+}
+.menu-item-menuItem svg {
+    height: 31px;
 }
 #pageHead {
     display: flex;
@@ -157,19 +200,20 @@ img.nav-bar-icon {
 ._m70zbn {
     justify-content: space-between;
 }
-._150t054 {
+.resources-grid-item {
     height: 200px;
     border: 1px solid #303030;
     padding: 0 !important;
     width: 350px !important;
-    margin: 1% !important;
+    margin: 1%;
     background-color: transparent !important;
+    padding: 0 !important;
 }
-._1gevi64 {
+.resources-grid-content{
     padding: 0 !important;
     background-color: transparent !important;
 }
-._1gevi64 > div {
+.resources-grid-content > div {
     height: 100%;
 }
 .lodex-resource-contentLink > div {
@@ -180,12 +224,12 @@ img.nav-bar-icon {
     min-height: 198px;
     position: relative;
 }
+.lodex-resource-contentCustomDiv,
 ._1hp9ikc,
-._3hmsj,
 ._kntyad {
     text-align: center;
 }
-._1hp9ikc {
+.lodex-resource-contentTitle {
     text-transform: capitalize;
     padding: 20px 10px 5px 10px;
     font-weight: bold;
@@ -198,7 +242,7 @@ img.nav-bar-icon {
     max-height: 85px;
     overflow: hidden;
 }
-div._3hmsj {
+div.lodex-resource-contentCustomDiv {
     border-top: 1px solid #242b32;
     height: 50px !important;
     line-height: 50px !important;
@@ -210,17 +254,17 @@ div._3hmsj {
     bottom: 0;
     width: 100%;
 }
-div._3hmsj:hover {
+div.lodex-resource-contentCustomDiv:hover {
     color: #fff !important;
     background-color: #458ca5;
 }
-div._3hmsj:hover:before {
+div.lodex-resource-contentCustomDiv:hover:before {
     background-image: url(../img/ic_savoir_plus_white.svg);
     background-size: 30px 30px;
     background-repeat: no-repeat;
     background-position: 35px center;
 }
-div._3hmsj:before {
+div.lodex-resource-contentCustomDiv:before {
     display: block;
     padding-left: 35px;
     width: 100%;
@@ -238,9 +282,6 @@ div._3hmsj:before {
 }
 .istex-fold div button {
     margin-bottom: 5px !important;
-}
-.resources-grid-item {
-    padding: 0 !important;
 }
 .fetch-fold-labelText {
     color: #c4d733 !important;
@@ -327,15 +368,106 @@ button:hover > svg {
         width: 100% !important;
     }
 }
-.list-format-unordered_without_bullet li {
+.list-format-unordered_without_bullet, .list-format-unordered {
+	list-style-type: none;
+	padding-inline-start: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.list-format-unordered_without_bullet li, .list-format-unordered li {
     width: 350px;
-    margin: 10px;
-    display: inline-block;
+    margin: 1%;
     vertical-align: top;
 }
-
+.lodex-resource-wrapper {
+	width: 350px;
+	margin:1%;
+}
 .page-page {
     padding-bottom: 0 !important;
+}
+/* partie liste à puce recompose */
+.list-format-unordered_without_bullet_li > div {
+	margin: 0 !important;
+    border: 1px solid #303030 !important; 
+    width: 350px;
+    height: 200px;
+    padding-left: 0 !important;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-radius: 2px;
+    box-shadow: 0 2px 1px rgba(170, 170, 170, 0.25);
+}
+.list-format-unordered_without_bullet_li > div > div:first-child {
+	order: 40;
+	border-top: 1px solid #242b32;
+    height: 50px !important;
+    line-height: 50px !important;
+    position: relative;
+    flex: 0 0 auto !important;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+}
+.list-format-unordered_without_bullet_li > div > div:first-child .link_to_resource {
+	opacity: 0;
+    color: #c4d733 !important;
+    font-weight: 400!important;
+}
+.list-format-unordered_without_bullet_li > div > div:first-child .link_to_resource::before {
+    background-color: #242b32;
+    display: block;
+    color: #c4d733 !important;
+    padding-left: 35px;
+    width: 100%f;
+    height: 50px;
+    content: 'EN SAVOIR PLUS';
+    font-size: 18px;
+    background-image: url(../img/ic_savoir_plus_jaune.svg);
+    background-size: 30px 30px;
+	background-repeat: no-repeat;
+    background-position: 35px center;
+    text-align: center;
+}
+.list-format-unordered_without_bullet_li > div > div:first-child .link_to_resource:hover::before {
+    color: #fff !important;
+    background-color: #458ca5;
+	background-image: url(../img/ic_savoir_plus_white.svg);
+    background-size: 30px 30px;
+    background-repeat: no-repeat;
+    background-position: 35px center;
+}
+.list-format-unordered_without_bullet_li > div > div > span:first-child {
+	display: none;
+}
+.list-format-unordered_without_bullet_li > div > div:nth-child(2) > span >span {
+	display: inline-block;
+    font-size: 16px;
+    line-height: 20px;
+    font-weight: 400;
+    text-transform: capitalize;
+    padding: 20px 10px 5px 10px;
+    font-weight: bold;
+    font-size: 2rem !important;
+}
+.list-format-unordered_without_bullet_li > div > div:nth-child(n+3) {
+	max-height: 85px;
+	overflow: hidden;
+}
+.list-format-unordered_without_bullet_li > div > div:nth-child(n+3) > span {
+	color: #000 !important;
+}
+.list-format-unordered_without_bullet_li > div > div:nth-child(n+3) > span >span { /* a changer en supérieur à 2 */
+	display: inline-block;
+	flex: 1 0 auto;
+    line-height: 16px;
+    padding: 5px 5px 0 5px;
+    font-size: 10px;
+    color: #000 !important;
+    max-height: 85px;
+    overflow: hidden;
 }
 
 /*FOOTER
