@@ -370,10 +370,13 @@ button:hover > svg {
 }
 .list-format-unordered_without_bullet, .list-format-unordered {
 	list-style-type: none;
-	padding-inline-start: 20px;
+	padding-inline-start: 0px;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
+}
+.list-format-unordered {
+    padding-inline-start: 20px;    
 }
 .list-format-unordered_without_bullet li, .list-format-unordered li {
     width: 350px;
