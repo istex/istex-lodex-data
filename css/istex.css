@@ -278,17 +278,27 @@ div.lodex-resource-contentCustomDiv:before {
 }
 .fetch-fold-buttonLabel {
     min-width: 200px;
-    justify-content: space-between;
+    justify-content: flex-start;
 }
 .istex-fold div button {
     margin-bottom: 5px !important;
 }
 .fetch-fold-labelText {
     color: #c4d733 !important;
+    max-width: 400px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+.istex-item-metadata {
+    line-height: 2rem !important;
 }
 .fetch-fold-count,
 .property_value_container button:hover .fetch-fold-count {
     color: #000 !important;
+}
+.fetch-fold-count {
+    margin-left: auto;
 }
 .load-more button div {
     color: #c4d733;
@@ -382,6 +392,9 @@ button:hover > svg {
     width: 350px;
     margin: 1%;
     vertical-align: top;
+}
+.yjkb {
+    flex-direction: column;
 }
 .lodex-resource-wrapper {
 	width: 350px;
