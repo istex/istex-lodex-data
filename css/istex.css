@@ -276,6 +276,11 @@ div.lodex-resource-contentCustomDiv:before {
     background-repeat: no-repeat;
     background-position: 35px center;
 }
+.graph-content .title {
+    color: #000 !important;
+    font-size: 1.6rem !important;
+    text-transform: uppercase;
+}
 .fetch-fold-buttonLabel {
     min-width: 200px;
     justify-content: flex-start;
@@ -378,7 +383,7 @@ button:hover > svg {
         width: 100% !important;
     }
 }
-.list-format-unordered_without_bullet, .list-format-unordered {
+.list-format-unordered_without_bullet {
 	list-style-type: none;
 	padding-inline-start: 0px;
     display: flex;
@@ -388,7 +393,7 @@ button:hover > svg {
 .list-format-unordered {
     padding-inline-start: 20px;    
 }
-.list-format-unordered_without_bullet li, .list-format-unordered li {
+.list-format-unordered_without_bullet li {
     width: 350px;
     margin: 1%;
     vertical-align: top;
@@ -428,14 +433,13 @@ button:hover > svg {
     width: 100%;
 }
 .list-format-unordered_without_bullet_li > div > div:first-child .link_to_resource {
-	opacity: 0;
-    color: #c4d733 !important;
+    color: rgb(196, 215, 51, 0) !important;
     font-weight: 400!important;
 }
 .list-format-unordered_without_bullet_li > div > div:first-child .link_to_resource::before {
     background-color: #242b32;
     display: block;
-    color: #c4d733 !important;
+    color: rgb(196, 215, 51, 1) !important;
     padding-left: 35px;
     width: 100%f;
     height: 50px;
