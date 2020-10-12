@@ -58,10 +58,6 @@
     overflow-x: hidden;
 }
 
-.dropdown-menu-center {
-    transform: translateX(-33%);
-}
-
 .dropdown-menu div {
     padding: 3px 7px;
     margin-right: 5px;
@@ -172,7 +168,7 @@
 
 .popupBody{
     padding: 0px;
-    height: 50vh;
+    height: 35vh;
     overflow-y: scroll;
 }
 
