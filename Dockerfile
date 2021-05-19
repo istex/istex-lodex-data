@@ -1,3 +1,3 @@
-FROM inistcnrs/lodex:11.16.5
+FROM inistcnrs/lodex:11.16.6
 
 COPY . /app/src/app/custom
