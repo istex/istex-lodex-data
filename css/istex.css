@@ -127,7 +127,10 @@ img.nav-bar-icon {
     font-family: 'Open Sans', sans-serif;
 }
 ._m70zbn + div {
-    margin-left: 10px;
+    margin-top: 30px;
+}
+.property_value_container>div {
+    padding-right: 0px!important;
 }
 .property_value_container button {
     background-color: #242b32 !important;
@@ -199,13 +202,14 @@ img.nav-bar-icon {
 }
 ._m70zbn {
     justify-content: space-between;
+    row-gap : 20px;
 }
 .resources-grid-item {
     height: 200px;
     border: 1px solid #303030;
     padding: 0 !important;
     width: 350px !important;
-    margin: 1%;
+    margin: 0;
     background-color: transparent !important;
     padding: 0 !important;
 }
@@ -235,29 +239,20 @@ img.nav-bar-icon {
     font-size: 20px !important ;
     line-height: 22px !important;
     max-height: 67px;
-    position: relative;
     overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* number of lines to show */
+    -webkit-box-orient: vertical;
 }
-.lodex-resource-contentTitle::before {
-  position: absolute;
-  content: "\00a0\00a0...";
-  bottom: 5px;
-  right: 8px;
-}
-.lodex-resource-contentTitle::after {
-  content: url(../img/BG2.jpg);
-  position: absolute;
-  right: 4px;
-  width: 19px;
-  height: 19px;
-}
-._kntyad {
-    margin-top: auto;
-    padding: 5px 5px 0 5px;
+.lodex-resource-contentParagraph {
     font-size: 10px;
+    line-height: 12px!important;
     color: #000 !important;
     max-height: 81px;
-    overflow: hidden;
+    margin-top: auto;
+    padding: 5px 5px 5px 5px;
+    text-align: left;
 }
 div.lodex-resource-contentCustomDiv {
     border-top: 1px solid #242b32;
@@ -335,10 +330,6 @@ div.lodex-resource-contentCustomDiv:before {
     margin-top: 50px;
     padding-bottom: 10px;
     border-bottom: 1px solid #000;
-}
-.main-resource-section button,
-a[tabindex] div span {
-    color: #337ab7 !important;
 }
 .property_label button:hover {
     background-color: transparent !important;
@@ -561,4 +552,33 @@ body > footer a {
 }
 .exergue {
     color: red;
+}
+
+
+
+/* version 12.1.3 */
+.MuiTypography-body1, .MuiTableCell-root, .MuiButton-root, .MuiTablePagination-caption {
+    font-size: 1.4rem!important;
+}
+.MuiListItem-root {
+    padding-top: 0!important;
+    padding-bottom: 0!important
+}
+.MuiButtonBase-root {
+    padding-top: 6px!important;
+    padding-bottom: 6px!important;
+    padding-right: 9px!important;
+    padding-left: 9px!important;
+}
+.MuiTableCell-root h4 {
+    color: #7dbd42!important;
+}
+.lodex-resource-newTab svg {
+    height: 20px;
+    margin-top: 5px;
+}
+@media (min-width: 60em) {
+    ._150t054 {
+        margin: 5px!important;
+    }
 }
