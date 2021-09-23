@@ -577,6 +577,13 @@ body > footer a {
     height: 20px;
     margin-top: 5px;
 }
+.search-result-details {
+    padding-top: 0.6rem!important;
+}
+.search-result-container {
+    padding: 1.6rem!important;
+    font-size: 1.4rem!important;
+}
 @media (min-width: 60em) {
     ._150t054 {
         margin: 5px!important;
