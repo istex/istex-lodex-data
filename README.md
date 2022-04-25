@@ -1,7 +1,1 @@
-# A dedicated ezmaster image
-
-with docker
-
-    npm run publish
-
-or with [ezmaster](https://github.com/Inist-CNRS/ezmaster)
+got to https://github.com/Inist-CNRS/lodex-themes/tree/master/istex
